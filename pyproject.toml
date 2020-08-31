@@ -10,6 +10,8 @@ python = "^3.7"
 requests-html = "^0.10.0"
 pydantic = "^1.6.1"
 pendulum = "^2.1.2"
+loguru = "^0.5.1"
+python-decouple = "^3.3"
 
 [tool.poetry.dev-dependencies]
 pytest-watch = "^4.2.0"
