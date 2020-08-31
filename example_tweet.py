@@ -6,7 +6,7 @@ import pendulum
 from nitter_scraper.tweets import get_tweets
 
 root_dir = Path(__file__).parent
-user_path = root_dir / "users.txt"
+user_path = root_dir / "example.txt"
 
 with open(user_path, mode="r") as f:
     users = f.read().strip().split("\n")
