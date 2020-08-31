@@ -109,7 +109,6 @@ def parse_tweet(raw_tweet):
 
 def get_tweets(query, pages=25, break_on_tweet_id: int = None):
     url = f"{NITTER_URL}/{query}"
-    print("url:", url)
 
     def gen_tweets(pages):
         response = session.get(url)
