@@ -9,7 +9,6 @@ This library is a work around for anyone who enjoyed the simplicity of the [twit
 * birthday and is_private are not implemented in the profile.
 * If the user does not have a banner the user_id cannot be scraped.
 * The user_id cannot be scraped from tweets.
-* Tweet entries have not been implemented yet.
 
 ## Prerequisites
 
