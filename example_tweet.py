@@ -11,8 +11,6 @@ user_path = root_dir / "example.txt"
 with open(user_path, mode="r") as f:
     users = f.read().strip().split("\n")
 
-BASE_URL = "http://localhost:8080"
-
 for user in users:
     for tweets in get_tweets(user, pages=25):
         for tweet in tweets:
