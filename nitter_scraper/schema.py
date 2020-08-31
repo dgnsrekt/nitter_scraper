@@ -1,5 +1,7 @@
 from pydantic.dataclasses import dataclass
+from pydantic.json import pydantic_encoder
 from datetime import datetime
+import json
 
 from typing import Optional, List
 from pprint import pprint
@@ -9,9 +11,9 @@ from pprint import pprint
 class Entries:
     hashtags: List[str]
     cashtags: List[str]
-    urls: List[str]  # ? List[urls]
-    photo: List[str]  # ? ^
-    videos: List[str]  # ? ^
+    urls: List[str]
+    photos: List[str]
+    videos: List[str]
 
 
 @dataclass
@@ -27,7 +29,10 @@ class Tweet:
     replies: int
     retweets: int
     likes: int
-    # entries: Entries
+    entries: Entries
+
+    def json(self, indent=4):
+        return json.dumps(self, indent=indent, default=pydantic_encoder)
 
 
 @dataclass
@@ -48,6 +53,9 @@ class Profile:
     user_id: Optional[int] = None
     location: Optional[str] = None
     website: Optional[str] = None
+
+    def json(self, indent=4):
+        return json.dumps(self, indent=indent, default=pydantic_encoder)
 
     @classmethod
     def parse_url(cls, element):

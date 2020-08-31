@@ -1,4 +1,5 @@
 from requests_html import HTMLSession, HTML
+import re
 import pendulum
 from nitter_scraper.schema import Tweet
 from nitter_scraper.config import NITTER_URL
@@ -36,12 +37,28 @@ def parse_stats(tweet_stats):
 
 
 def parse_attachments(attachements):
-    # NOTE: probably need better logic here.
-    photos, videos = None, None
+    photos, videos = [], []
     if attachements:
-        photos = attachements.find("img")
-        videos = attachements.find("source")
+        photos = [i.attrs["src"] for i in attachements.find("img")]
+        videos = [i.attrs["src"] for i in attachements.find("source")]
     return photos, videos
+
+
+def parse_cashtags(text):
+    cashtag_regex = re.compile(r"\$[^\d\s]\w*")
+    matched = cashtag_regex.findall(text)
+    return matched
+
+
+def parse_hashtags(text):
+    cashtag_regex = re.compile(r"\#[^\d\s]\w*")
+    matched = cashtag_regex.findall(text)
+    return matched
+
+
+def parse_urls(links):
+    links = list(filter(lambda link: "http://" in link or "https://" in link, links))
+    return links
 
 
 def parse_tweet(raw_tweet):
@@ -65,7 +82,7 @@ def parse_tweet(raw_tweet):
     text = body.find(".tweet-content", first=True)
     data["text"] = text.text
 
-    # tweet_header = raw_tweet.find(".tweet-header")
+    # tweet_header = raw_tweet.find(".tweet-header") #NOTE: Maybe useful later on
 
     tweet_stats = parse_stats(raw_tweet.find(".tweet-stats", first=True))
 
@@ -78,12 +95,15 @@ def parse_tweet(raw_tweet):
     if tweet_stats.get("heart"):
         data["likes"] = clean_stat(tweet_stats.get("heart"))
 
-    # hashtags = parse_hashtags(text.text)
-    # cashtags = parse_cashtags(text.text)
-    # urls = parse_urls(text.text)
-    # photos, videos = parse_attachments(body.find(".attachments", first=True))
-
-    # quote = raw_tweet.find(".quote", first=True)
+    entries = {}
+    entries["hashtags"] = parse_hashtags(text.text)
+    entries["cashtags"] = parse_cashtags(text.text)
+    entries["urls"] = parse_urls(text.links)
+    photos, videos = parse_attachments(body.find(".attachments", first=True))
+    entries["photos"] = photos
+    entries["videos"] = videos
+    data["entries"] = entries
+    # quote = raw_tweet.find(".quote", first=True) #NOTE: Maybe useful later on
     return Tweet(**data)
 
 

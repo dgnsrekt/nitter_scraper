@@ -1,7 +1,6 @@
 from pathlib import Path
-from nitter_scraper.profile import get_profile
+from nitter_scraper import get_profile
 from pprint import pprint
-from pydantic.json import pydantic_encoder
 import json
 
 root_dir = Path(__file__).parent
@@ -14,4 +13,4 @@ for user in users:
     profile = get_profile(user)
     print(user)
     print(profile)
-    print(json.dumps(profile, indent=4, default=pydantic_encoder))
+    print(profile.json(indent=4))

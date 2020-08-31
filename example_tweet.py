@@ -3,7 +3,7 @@ import time
 from pprint import pprint
 from pathlib import Path
 import pendulum
-from nitter_scraper.tweets import get_tweets
+from nitter_scraper import get_tweets
 
 root_dir = Path(__file__).parent
 user_path = root_dir / "example.txt"
@@ -14,6 +14,7 @@ with open(user_path, mode="r") as f:
 BASE_URL = "http://localhost:8080"
 
 for user in users:
-    for tweets in get_tweets(user):
-        print()
-        pprint(tweets)
+    for tweets in get_tweets(user, pages=25):
+        for tweet in tweets:
+            print(tweet)
+            print(tweet.json())
