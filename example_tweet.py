@@ -12,7 +12,7 @@ with open(user_path, mode="r") as f:
     users = f.read().strip().split("\n")
 
 for user in users:
-    for tweets in get_tweets(user, pages=25):
-        for tweet in tweets:
-            print(tweet)
-            print(tweet.json())
+    for idx, tweet in enumerate(get_tweets(user, pages=100)):
+        print()
+        print(idx, tweet.json())
+        # print(tweet.json())

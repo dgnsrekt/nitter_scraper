@@ -122,20 +122,18 @@ def get_tweets(query, pages=25, break_on_tweet_id: int = None):
                 next_url = f"{NITTER_URL}/{query}{next_url}"
 
                 timeline_items = timeline.find(".timeline-item")
-                tweets = []
 
                 for item in timeline_items:
                     if "show-more" in item.attrs["class"]:
                         continue
 
                     tweet = parse_tweet(item)
-                    tweets.append(tweet)
 
                     if tweet.tweet_id == break_on_tweet_id:
                         pages = 0
                         break
 
-                yield tweets
+                    yield tweet
 
             response = session.get(next_url)
             pages -= 1
