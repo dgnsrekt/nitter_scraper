@@ -58,6 +58,10 @@ class Profile:
         return json.dumps(self, indent=indent, default=pydantic_encoder)
 
     @classmethod
+    def clean_username(cls, username):
+        return username.replace("@", "")
+
+    @classmethod
     def parse_url(cls, element):
         return list(element.links)[0]
 
@@ -71,7 +75,7 @@ class Profile:
 
     @classmethod
     def from_elements(cls, elements):
-        elements["username"] = elements["username"].text
+        elements["username"] = cls.clean_username(elements["username"].text)
 
         elements["name"] = elements["name"].text
 
