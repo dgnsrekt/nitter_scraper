@@ -48,4 +48,4 @@ def get_profile(user):
         return Profile.from_elements(elements)
 
     else:
-        raise ValueError(f'Oops! Either "{name}" does not exist or is private.')
+        raise ValueError(f'Oops! Either "{user}" does not exist or is private.')
