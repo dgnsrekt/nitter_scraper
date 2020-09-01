@@ -37,6 +37,11 @@ python3 example_tweet.py
 
 More docs coming soon.
 
+## TODO
+* setup.py
+* pypi
+* on import check if nitter is running/reachable.
+
 ## Contact Information
 Telegram = Twitter = Tradingview = Discord = @dgnsrekt
 
