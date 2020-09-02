@@ -42,6 +42,9 @@ More docs coming soon.
 * pypi
 * on import check if nitter is running/reachable.
 
+## Ideas
+* Spin up multiple nim containers each behind a different ip, vpn, proxy, or torproxy to test the limits of asynchronously scraping accounts.
+
 ## Contact Information
 Telegram = Twitter = Tradingview = Discord = @dgnsrekt
 
