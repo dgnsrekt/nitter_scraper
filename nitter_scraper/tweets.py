@@ -1,6 +1,6 @@
 from requests_html import HTMLSession, HTML
 import re
-import pendulum
+from datetime import datetime
 from nitter_scraper.schema import Tweet
 from nitter_scraper.config import NITTER_URL
 
@@ -18,9 +18,20 @@ def parse_tweet_link(tweet_link):
 
 
 def parse_date(tweet_date):
-    tweet_date = tweet_date.replace(",", "")
-    tweet_date = tweet_date.replace("/", "-")
-    return pendulum.parse(tweet_date, strict=False)
+    split_datetime = tweet_date.split(",")
+
+    day, month, year = split_datetime[0].strip().split("/")
+    hours, minutes, seconds = split_datetime[1].strip().split(":")
+
+    day = int(day)
+    month = int(month)
+    year = int(year)
+
+    hours = int(hours)
+    minutes = int(minutes)
+    seconds = int(seconds)
+
+    return datetime(year=year, month=month, day=day, hour=hours, minute=minutes, second=seconds)
 
 
 def clean_stat(stat):

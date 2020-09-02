@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "nitter_scraper"
-version = "0.1.4"
+version = "0.1.5"
 description = ""
 authors = ["dgnsrekt <dgnsrekt@pm.me>"]
 license = "MIT"
