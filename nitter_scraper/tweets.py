@@ -19,17 +19,19 @@ def date_parser(tweet_date):
     split_datetime = tweet_date.split(",")
 
     day, month, year = split_datetime[0].strip().split("/")
-    hours, minutes, seconds = split_datetime[1].strip().split(":")
+    hour, minute, second = split_datetime[1].strip().split(":")
 
-    day = int(day)
-    month = int(month)
-    year = int(year)
+    data = {}
 
-    hours = int(hours)
-    minutes = int(minutes)
-    seconds = int(seconds)
+    data["day"] = int(day)
+    data["month"] = int(month)
+    data["year"] = int(year)
 
-    return datetime(year=year, month=month, day=day, hour=hours, minute=minutes, second=seconds)
+    data["hour"] = int(hour)
+    data["minute"] = int(minute)
+    data["second"] = int(second)
+
+    return datetime(**data)
 
 
 def clean_stat(stat):
