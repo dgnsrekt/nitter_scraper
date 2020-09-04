@@ -3,15 +3,72 @@ from nitter_scraper.schema import Profile
 from nitter_scraper.config import NITTER_URL
 
 
-def get_profile(user):
+def username_cleaner(username):
+    return username.replace("@", "")
+
+
+def link_parser(element):
+    return list(element.links)[0]
+
+
+def parse_user_id_from_banner_url(banner_url):
+    return banner_url.split("%2F")[1]
+
+
+def stat_cleaner(stat):
+    return int(stat.replace(",", ""))
+
+
+def profile_parser(elements):
+    elements["username"] = username_cleaner(elements["username"].text)
+
+    elements["name"] = elements["name"].text
+
+    if elements.get("location"):
+        elements["location"] = elements["location"].text
+
+    if elements.get("is_verified"):
+        elements["is_verified"] = True
+    else:
+        elements["is_verified"] = False
+
+    if elements.get("biography"):
+        elements["biography"] = elements["biography"].text
+
+    if elements.get("website"):
+        elements["website"] = link_parser(elements["website"])
+
+    if elements.get("profile_photo"):
+        elements["profile_photo"] = link_parser(elements["profile_photo"])
+
+    if elements.get("banner_photo"):
+        elements["banner_photo"] = link_parser(elements["banner_photo"])
+        elements["user_id"] = parse_user_id_from_banner_url(elements["banner_photo"])
+
+    if elements.get("tweets_count"):
+        elements["tweets_count"] = stat_cleaner(elements["tweets_count"].text)
+
+    if elements.get("following_count"):
+        elements["following_count"] = stat_cleaner(elements["following_count"].text)
+
+    if elements.get("followers_count"):
+        elements["followers_count"] = stat_cleaner(elements["followers_count"].text)
+
+    if elements.get("likes_count"):
+        elements["likes_count"] = stat_cleaner(elements["likes_count"].text)
+
+    return Profile.from_dict(elements)
+
+
+def get_profile(user: str, not_found_ok: bool = False):
     url = f"{NITTER_URL}/{user}"
     session = HTMLSession()
-    page = session.get(url)
+    response = session.get(url)
 
     elements = {}
-    if page.status_code == 200:  # user exists
+    if response.status_code == 200:  # user exists
 
-        html = HTML(html=page.text, default_encoding="utf-8")
+        html = HTML(html=response.text, default_encoding="utf-8")
 
         elements["username"] = html.find(".profile-card-username", first=True)
 
@@ -24,6 +81,7 @@ def get_profile(user):
         elements["is_verified"] = html.find(
             ".profile-card-fullname .icon-container .verified-icon", first=True
         )
+
         elements["profile_photo"] = html.find(".profile-card-avatar", first=True)
 
         elements["banner_photo"] = html.find(".profile-banner a", first=True)
@@ -45,7 +103,10 @@ def get_profile(user):
 
         elements = {k: v for k, v in elements.items() if v is not None}
 
-        return Profile.from_elements(elements)
+        return profile_parser(elements)
+
+    if not_found_ok:
+        return None
 
     else:
         raise ValueError(f'Oops! Either "{user}" does not exist or is private.')

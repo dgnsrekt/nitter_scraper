@@ -4,10 +4,8 @@ from datetime import datetime
 from nitter_scraper.schema import Tweet
 from nitter_scraper.config import NITTER_URL
 
-session = HTMLSession()
 
-
-def parse_tweet_link(tweet_link):
+def link_parser(tweet_link):
     links = list(tweet_link.links)
     tweet_url = links[0]
     parts = links[0].split("/")
@@ -17,7 +15,7 @@ def parse_tweet_link(tweet_link):
     return tweet_id, username, tweet_url
 
 
-def parse_date(tweet_date):
+def date_parser(tweet_date):
     split_datetime = tweet_date.split(",")
 
     day, month, year = split_datetime[0].strip().split("/")
@@ -38,7 +36,7 @@ def clean_stat(stat):
     return int(stat.replace(",", ""))
 
 
-def parse_stats(tweet_stats):
+def stats_parser(tweet_stats):
     stats = {}
     for ic in tweet_stats.find(".icon-container"):
         key = ic.find("span", first=True).attrs["class"][0].replace("icon", "").replace("-", "")
@@ -47,7 +45,7 @@ def parse_stats(tweet_stats):
     return stats
 
 
-def parse_attachments(attachements):
+def attachment_parser(attachements):
     photos, videos = [], []
     if attachements:
         photos = [i.attrs["src"] for i in attachements.find("img")]
@@ -55,71 +53,70 @@ def parse_attachments(attachements):
     return photos, videos
 
 
-def parse_cashtags(text):
+def cashtag_parser(text):
     cashtag_regex = re.compile(r"\$[^\d\s]\w*")
-    matched = cashtag_regex.findall(text)
-    return matched
+    return cashtag_regex.findall(text)
 
 
-def parse_hashtags(text):
-    cashtag_regex = re.compile(r"\#[^\d\s]\w*")
-    matched = cashtag_regex.findall(text)
-    return matched
+def hashtag_parser(text):
+    hashtag_regex = re.compile(r"\#[^\d\s]\w*")
+    return hashtag_regex.findall(text)
 
 
-def parse_urls(links):
-    links = list(filter(lambda link: "http://" in link or "https://" in link, links))
-    return links
+def url_parser(links):
+    return list(filter(lambda link: "http://" in link or "https://" in link, links))
 
 
-def parse_tweet(raw_tweet):
+def parse_tweet(html):
     data = {}
-    tweet_id, username, tweet_url = parse_tweet_link(raw_tweet.find(".tweet-link", first=True))
-    data["tweet_id"] = tweet_id
-    data["tweet_url"] = tweet_url
+    id, username, url = link_parser(html.find(".tweet-link", first=True))
+    data["tweet_id"] = id
+    data["tweet_url"] = url
     data["username"] = username
 
-    retweet_header = raw_tweet.find(".retweet-header .icon-container .icon-retweet", first=True)
-    retweet = True if retweet_header else False
-    data["is_retweet"] = retweet
+    retweet = html.find(".retweet-header .icon-container .icon-retweet", first=True)
+    data["is_retweet"] = True if retweet else False
 
-    body = raw_tweet.find(".tweet-body", first=True)
-    pinned = True if body.find(".pinned", first=True) is not None else False
-    data["is_pinned"] = pinned
+    body = html.find(".tweet-body", first=True)
 
-    tweet_datetime = parse_date(body.find(".tweet-date a", first=True).attrs["title"])
-    data["time"] = tweet_datetime
+    pinned = body.find(".pinned", first=True)
+    data["is_pinned"] = True if pinned is not None else False
 
-    text = body.find(".tweet-content", first=True)
-    data["text"] = text.text
+    data["time"] = date_parser(body.find(".tweet-date a", first=True).attrs["title"])
 
-    # tweet_header = raw_tweet.find(".tweet-header") #NOTE: Maybe useful later on
+    content = body.find(".tweet-content", first=True)
+    data["text"] = content.text
 
-    tweet_stats = parse_stats(raw_tweet.find(".tweet-stats", first=True))
+    # tweet_header = html.find(".tweet-header") #NOTE: Maybe useful later on
 
-    if tweet_stats.get("comment"):
-        data["replies"] = clean_stat(tweet_stats.get("comment"))
+    stats = stats_parser(html.find(".tweet-stats", first=True))
 
-    if tweet_stats.get("retweet"):
-        data["retweets"] = clean_stat(tweet_stats.get("retweet"))
+    if stats.get("comment"):
+        data["replies"] = clean_stat(stats.get("comment"))
 
-    if tweet_stats.get("heart"):
-        data["likes"] = clean_stat(tweet_stats.get("heart"))
+    if stats.get("retweet"):
+        data["retweets"] = clean_stat(stats.get("retweet"))
+
+    if stats.get("heart"):
+        data["likes"] = clean_stat(stats.get("heart"))
 
     entries = {}
-    entries["hashtags"] = parse_hashtags(text.text)
-    entries["cashtags"] = parse_cashtags(text.text)
-    entries["urls"] = parse_urls(text.links)
-    photos, videos = parse_attachments(body.find(".attachments", first=True))
+    entries["hashtags"] = hashtag_parser(content.text)
+    entries["cashtags"] = cashtag_parser(content.text)
+    entries["urls"] = url_parser(content.links)
+
+    photos, videos = attachment_parser(body.find(".attachments", first=True))
     entries["photos"] = photos
     entries["videos"] = videos
+
     data["entries"] = entries
-    # quote = raw_tweet.find(".quote", first=True) #NOTE: Maybe useful later on
-    return Tweet(**data)
+    # quote = html.find(".quote", first=True) #NOTE: Maybe useful later on
+    return Tweet.from_dict(data)
 
 
 def get_tweets(query, pages=25, break_on_tweet_id: int = None):
     url = f"{NITTER_URL}/{query}"
+    session = HTMLSession()
 
     def gen_tweets(pages):
         response = session.get(url)
@@ -129,8 +126,8 @@ def get_tweets(query, pages=25, break_on_tweet_id: int = None):
                 html = HTML(html=response.text, default_encoding="utf-8")
                 timeline = html.find(".timeline", first=True)
 
-                next_url = list(timeline.find(".show-more")[-1].links)[0]
-                next_url = f"{NITTER_URL}/{query}{next_url}"
+                next_page = list(timeline.find(".show-more")[-1].links)[0]
+                next_url = f"{NITTER_URL}/{query}{next_page}"
 
                 timeline_items = timeline.find(".timeline-item")
 

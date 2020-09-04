@@ -14,5 +14,6 @@ with open(user_path, mode="r") as f:
 for user in users:
     for idx, tweet in enumerate(get_tweets(user, pages=100)):
         print()
-        print(idx, tweet.json())
-        # print(tweet.json())
+        pprint(tweet.to_dict())
+        print(tweet.to_json())
+        pprint(tweet.to_tuple())
