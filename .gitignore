@@ -95,3 +95,4 @@ ENV/
 pytest.ini
 temp-plot.html
 users.txt
+tmp*

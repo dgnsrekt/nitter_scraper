@@ -1,6 +1,5 @@
 from requests_html import HTMLSession, HTML
 from nitter_scraper.schema import Profile
-from nitter_scraper.config import NITTER_URL
 
 
 def username_cleaner(username):
@@ -60,8 +59,8 @@ def profile_parser(elements):
     return Profile.from_dict(elements)
 
 
-def get_profile(user: str, not_found_ok: bool = False):
-    url = f"{NITTER_URL}/{user}"
+def get_profile(user: str, not_found_ok: bool = False, address="https://nitter.net"):
+    url = f"{address}/{user}"
     session = HTMLSession()
     response = session.get(url)
 

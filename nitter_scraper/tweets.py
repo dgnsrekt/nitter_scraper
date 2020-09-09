@@ -2,7 +2,6 @@ from requests_html import HTMLSession, HTML
 import re
 from datetime import datetime
 from nitter_scraper.schema import Tweet
-from nitter_scraper.config import NITTER_URL
 
 
 def link_parser(tweet_link):
@@ -116,8 +115,8 @@ def parse_tweet(html):
     return Tweet.from_dict(data)
 
 
-def get_tweets(query, pages=25, break_on_tweet_id: int = None):
-    url = f"{NITTER_URL}/{query}"
+def get_tweets(query, pages=25, break_on_tweet_id: int = None, address="https://nitter.net"):
+    url = f"{address}/{query}"
     session = HTMLSession()
 
     def gen_tweets(pages):
@@ -129,7 +128,7 @@ def get_tweets(query, pages=25, break_on_tweet_id: int = None):
                 timeline = html.find(".timeline", first=True)
 
                 next_page = list(timeline.find(".show-more")[-1].links)[0]
-                next_url = f"{NITTER_URL}/{query}{next_page}"
+                next_url = f"{address}/{query}{next_page}"
 
                 timeline_items = timeline.find(".timeline-item")
 
