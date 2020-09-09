@@ -13,18 +13,18 @@ This library is a work around for anyone who enjoyed the simplicity of the [twit
 ## Prerequisites
 
 * Docker
-* Docker-compose
 * Python ^3.7
 
 ## How to run the examples.
 ```
 git clone git@github.com:dgnsrekt/nitter_scraper.git
 cd nitter_scraper
-docker-compose up -d
 poetry install
 poetry shell
 ```
 Add twitter usernames to the example.txt delimited by newlines.
+
+Docker must be properly installed to run the examples with the NitterDockerContainer contextmanager.
 
 Run profile scraping example
 ```
@@ -40,10 +40,6 @@ More docs coming soon.
 ## TODO
 * setup.py
 * pypi
-* on import check if nitter is running/reachable.
-
-## Ideas
-* Spin up multiple nitter containers each behind a different ip, vpn, proxy, or torproxy to test the limits of asynchronously scraping accounts.
 
 ## Contact Information
 Telegram = Twitter = Tradingview = Discord = @dgnsrekt

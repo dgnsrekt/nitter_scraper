@@ -1,5 +1,4 @@
-from pydantic.dataclasses import dataclass
-from pydantic.json import pydantic_encoder
+from pydantic import BaseModel as Base
 from dataclasses import asdict, astuple
 from datetime import datetime
 import json
@@ -7,8 +6,7 @@ import json
 from typing import Optional, List
 
 
-@dataclass
-class Entries:
+class Entries(Base):
     hashtags: List[str]
     cashtags: List[str]
     urls: List[str]
@@ -16,8 +14,7 @@ class Entries:
     videos: List[str]
 
 
-@dataclass
-class Tweet:
+class Tweet(Base):
     tweet_id: int
     tweet_url: str
     username: str
@@ -31,22 +28,21 @@ class Tweet:
     likes: int
     entries: Entries
 
-    def to_dict(self):
-        return asdict(self)
+    # def to_dict(self):
+    # return asdict(self)
 
-    def to_json(self, indent=4):
-        return json.dumps(self, indent=indent, default=pydantic_encoder)
+    # def to_json(self, indent=4):
+    # return json.dumps(self, indent=indent, default=pydantic_encoder)
 
-    def to_tuple(self):
-        return astuple(self)
+    # def to_tuple(self):
+    # return astuple(self)
 
     @classmethod
     def from_dict(cls, elements):
         return cls(**elements)
 
 
-@dataclass
-class Profile:
+class Profile(Base):
     username: str
     name: str
     # birthday: str
@@ -64,14 +60,14 @@ class Profile:
     location: Optional[str] = None
     website: Optional[str] = None
 
-    def to_dict(self):
-        return asdict(self)
+    # def to_dict(self):
+    # return asdict(self)
 
-    def to_json(self, indent=4):
-        return json.dumps(self, indent=indent, default=pydantic_encoder)
+    # def to_json(self, indent=4):
+    # return json.dumps(self, indent=indent, default=pydantic_encoder)
 
-    def to_tuple(self):
-        return astuple(self)
+    # def to_tuple(self):
+    # return astuple(self)
 
     @classmethod
     def from_dict(cls, elements):
