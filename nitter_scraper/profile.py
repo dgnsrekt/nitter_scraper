@@ -59,48 +59,50 @@ def profile_parser(elements):
     return Profile.from_dict(elements)
 
 
+def element_parser(html):
+    elements = {}
+
+    elements["username"] = html.find(".profile-card-username", first=True)
+
+    elements["name"] = html.find(".profile-card-fullname", first=True)
+
+    elements["biography"] = html.find(".profile-bio", first=True)
+
+    elements["location"] = html.find(".profile-location", first=True)
+
+    elements["is_verified"] = html.find(
+        ".profile-card-fullname .icon-container .verified-icon", first=True
+    )
+
+    elements["profile_photo"] = html.find(".profile-card-avatar", first=True)
+
+    elements["banner_photo"] = html.find(".profile-banner a", first=True)
+
+    elements["website"] = html.find(".profile-website", first=True)
+
+    profile_statlist = html.find(".profile-statlist", first=True)
+
+    elements["tweets_count"] = profile_statlist.find(".posts .profile-stat-num", first=True)
+
+    elements["following_count"] = profile_statlist.find(".following .profile-stat-num", first=True)
+
+    elements["followers_count"] = profile_statlist.find(".followers .profile-stat-num", first=True)
+
+    elements["likes_count"] = profile_statlist.find(".likes .profile-stat-num", first=True)
+
+    elements = {k: v for k, v in elements.items() if v is not None}
+
+    return elements
+
+
 def get_profile(user: str, not_found_ok: bool = False, address="https://nitter.net"):
     url = f"{address}/{user}"
     session = HTMLSession()
     response = session.get(url)
 
-    elements = {}
     if response.status_code == 200:  # user exists
 
-        html = HTML(html=response.text, default_encoding="utf-8")
-
-        elements["username"] = html.find(".profile-card-username", first=True)
-
-        elements["name"] = html.find(".profile-card-fullname", first=True)
-
-        elements["biography"] = html.find(".profile-bio", first=True)
-
-        elements["location"] = html.find(".profile-location", first=True)
-
-        elements["is_verified"] = html.find(
-            ".profile-card-fullname .icon-container .verified-icon", first=True
-        )
-
-        elements["profile_photo"] = html.find(".profile-card-avatar", first=True)
-
-        elements["banner_photo"] = html.find(".profile-banner a", first=True)
-
-        elements["website"] = html.find(".profile-website", first=True)
-
-        profile_statlist = html.find(".profile-statlist", first=True)
-
-        elements["tweets_count"] = profile_statlist.find(".posts .profile-stat-num", first=True)
-
-        elements["following_count"] = profile_statlist.find(
-            ".following .profile-stat-num", first=True
-        )
-
-        elements["followers_count"] = profile_statlist.find(
-            ".followers .profile-stat-num", first=True
-        )
-        elements["likes_count"] = profile_statlist.find(".likes .profile-stat-num", first=True)
-
-        elements = {k: v for k, v in elements.items() if v is not None}
+        elements = element_parser(response.html)
 
         return profile_parser(elements)
 

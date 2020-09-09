@@ -1,0 +1,8 @@
+'{"tweet_id": 1242382545955819521, "tweet_url": "/openoms/status/1242382545955819521#m",
+  "username": "openoms", "is_retweet": true, "is_pinned": false, "time": "2020-03-24T09:27:35",
+  "text": "In case you are still wondering how to audit the monetary supply of #Bitcoin:
+  * enter the command line of a synced node running Bitcoin Core and type: ''bitcoin-cli
+  gettxoutsetinfo'' * wait a bit - your own sovereign bank is counting all the money
+  available", "replies": 7, "retweets": 63, "likes": 174, "entries": {"hashtags":
+  ["#Bitcoin"], "cashtags": [], "urls": [], "photos": ["/pic/media%2FET3TsGsWkAAIOQW.png%3Fname%3Dsmall"],
+  "videos": []}}'

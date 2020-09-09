@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "nitter_scraper"
-version = "0.2.0"
+version = "0.3.0"
 description = ""
 authors = ["dgnsrekt <dgnsrekt@pm.me>"]
 license = "MIT"
@@ -16,6 +16,9 @@ jinja2 = "^2.11.2"
 
 [tool.poetry.dev-dependencies]
 pytest-watch = "^4.2.0"
+pytest-regressions = "^2.0.1"
+tomlkit = "^0.7.0"
+pytest-sugar = "^0.9.4"
 
 [build-system]
 requires = ["poetry>=0.12"]

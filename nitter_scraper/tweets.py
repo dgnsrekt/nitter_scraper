@@ -65,7 +65,7 @@ def hashtag_parser(text):
 
 
 def url_parser(links):
-    return list(filter(lambda link: "http://" in link or "https://" in link, links))
+    return sorted(filter(lambda link: "http://" in link or "https://" in link, links))
 
 
 def parse_tweet(html):
@@ -115,8 +115,17 @@ def parse_tweet(html):
     return Tweet.from_dict(data)
 
 
-def get_tweets(query, pages=25, break_on_tweet_id: int = None, address="https://nitter.net"):
-    url = f"{address}/{query}"
+def timeline_parser(html):
+    return html.find(".timeline", first=True)
+
+
+def pagination_parser(timeline, address, username):
+    next_page = list(timeline.find(".show-more")[-1].links)[0]
+    return f"{address}/{username}{next_page}"
+
+
+def get_tweets(username, pages=25, break_on_tweet_id: int = None, address="https://nitter.net"):
+    url = f"{address}/{username}"
     session = HTMLSession()
 
     def gen_tweets(pages):
@@ -124,11 +133,9 @@ def get_tweets(query, pages=25, break_on_tweet_id: int = None, address="https://
 
         while pages > 0:
             if response.status_code == 200:
-                html = HTML(html=response.text, default_encoding="utf-8")
-                timeline = html.find(".timeline", first=True)
+                timeline = timeline_parser(response.html)
 
-                next_page = list(timeline.find(".show-more")[-1].links)[0]
-                next_url = f"{address}/{query}{next_page}"
+                next_url = pagination_parser(timeline, address, username)
 
                 timeline_items = timeline.find(".timeline-item")
 

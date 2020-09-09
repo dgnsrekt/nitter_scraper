@@ -15,7 +15,7 @@ from jinja2 import Environment, FileSystemLoader
 
 from contextlib import contextmanager, ExitStack
 
-from nitter_scraper.paths import TEMPLATES_FOLDER, PROJECT_ROOT
+from nitter_scraper.paths import TEMPLATES_DIRECTORY, PROJECT_ROOT
 
 from loguru import logger
 
@@ -64,7 +64,7 @@ class Nitter(DockerBase):
         return {self.config_filepath: volumes}
 
     def _render_config(self):
-        env = Environment(loader=FileSystemLoader(TEMPLATES_FOLDER))
+        env = Environment(loader=FileSystemLoader(TEMPLATES_DIRECTORY))
         template = env.get_template("nitter.conf")
         return template.render(self.dict())
 

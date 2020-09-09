@@ -1,0 +1,7 @@
+'{"tweet_id": 1284523595348299777, "tweet_url": "/ID_AA_Carmack/status/1284523595348299777#m",
+  "username": "ID_AA_Carmack", "is_retweet": true, "is_pinned": false, "time": "2020-07-18T16:21:05",
+  "text": "Someone noticed that when you have hundreds / thousands of cores in a supercomputer,
+  the individual utilization boxes in Task Manager start to look like pixels. People
+  started making pictures by doing different amounts of work on specific processors.
+  It escalated quickly.", "replies": 293, "retweets": 10324, "likes": 35670, "entries":
+  {"hashtags": [], "cashtags": [], "urls": [], "photos": [], "videos": []}}'
