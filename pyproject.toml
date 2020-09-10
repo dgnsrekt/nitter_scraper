@@ -1,8 +1,12 @@
 [tool.poetry]
 name = "nitter_scraper"
-version = "0.3.2"
+version = "0.3.3"
 description = "Scrape Twitter API without authentication using Nitter."
 authors = ["dgnsrekt <dgnsrekt@pm.me>"]
+readme = "README.md"
+homepage = "https://github.com/dgnsrekt/nitter_scraper"
+repository = "https://github.com/dgnsrekt/nitter_scraper"
+keywords = ["twitter", "api", "no-authentication", "tweets", "docker"]
 license = "MIT"
 
 [tool.poetry.dependencies]
