@@ -8,9 +8,12 @@ If you have docker installed you can use the NitterDockerContainer manager. It t
 ```
 from nitter_scraper import NitterDockerContainer, get_tweets
 
-with NitterDockerContainer(host="0.0.0.0", port=8008) as nitter:
+with NitterDockerContainer(host="0.0.0.0", port=8008) as nitter: #<-- This version will make requests to a local docker container
     for tweet in get_tweets("dgnsrekt", address=nitter.address):
         print(tweet.json(indent=4))
+
+for tweet in get_tweets("dgnsrekt"): #<-- This version will make requests to https://www.nitter.net
+    print(tweet.json(indent=4))
 
 ```
 
