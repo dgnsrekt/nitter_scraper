@@ -277,6 +277,7 @@ More docs coming soon.
 
 ## TODO
 * Explain args
+* More tests
 
 ## Contact Information
 Telegram = Twitter = Tradingview = Discord = @dgnsrekt
