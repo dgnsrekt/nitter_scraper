@@ -19,25 +19,46 @@ with NitterDockerContainer(host="0.0.0.0", port=8008) as nitter:
 * Docker
 * Python ^3.7
 
-## Run the examples.
+## Install
 ```
-git clone git@github.com:dgnsrekt/nitter_scraper.git
-cd nitter_scraper
-poetry install
-poetry shell
+pip install nitter-scraper
 ```
-Add twitter usernames to the example.txt delimited by newlines.
 
-Docker must be properly installed to run the examples with the NitterDockerContainer context manager.
+## Examples
 
-Run profile scraping example
+#### Run
 ```
-python3 example_profile.py
+from nitter_scraper import NitterDockerContainer, get_profile
+
+with NitterDockerContainer(host="0.0.0.0", port=8008) as nitter:
+    profile = get_profile("dgnsrekt", address=nitter.address)
+    print(profile.json(indent=4))
+
 ```
-Run tweet scraping example
+#### Output
 ```
-python3 example_tweet.py
+2020-09-09 21:07:33.025 | INFO     | nitter_scraper.nitter:get_client:33 - Docker connection successful.
+2020-09-09 21:07:34.992 | INFO     | nitter_scraper.nitter:start:89 - Running container dreamy_bhaskara a812e3d41f.
+{
+    "username": "DGNSREKT",
+    "name": "DGNSREKT",
+    "profile_photo": "/pic/profile_images%2F1303625659399516160%2FjLtzJMAr.png",
+    "tweets_count": 2898,
+    "following_count": 904,
+    "followers_count": 119,
+    "likes_count": 4995,
+    "is_verified": false,
+    "banner_photo": "/pic/profile_banners%2F2474416796%2F1599643557%2F1500x500",
+    "biography": "TOO THE MOON!!!",
+    "user_id": 2474416796,
+    "location": "Moon",
+    "website": "https://github.com/dgnsrekt"
+}
+2020-09-09 21:07:35.920 | INFO     | nitter_scraper.nitter:stop:92 - Stopping container dreamy_bhaskara a812e3d41f.
+2020-09-09 21:07:41.335 | INFO     | nitter_scraper.nitter:stop:95 - Container dreamy_bhaskara a812e3d41f Destroyed.
+
 ```
+
 ## Profile & Tweet objects
 The Profile and Tweet classes inherit from pydantic's BaseModel. This makes it easy to convert to a dict or json.
 ```
