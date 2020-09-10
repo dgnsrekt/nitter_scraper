@@ -276,8 +276,7 @@ These are the fields uses in the Tweet class which is returned from the get_twee
 More docs coming soon.
 
 ## TODO
-* setup.py
-* pypi
+* Explain args
 
 ## Contact Information
 Telegram = Twitter = Tradingview = Discord = @dgnsrekt
