@@ -51,7 +51,8 @@ pip install nitter-scraper
 ```
 
 ## Examples
-#### Scrape Users Tweets
+
+#### Scrape Users Tweets example
 ```
 from nitter_scraper import get_tweets
 from nitter_scraper import NitterScraper
@@ -79,7 +80,7 @@ for user in users:
         print(tweet.json(indent=4))
 ```
 
-#### Scrape User Profiles
+#### Scrape User Profiles example
 ```
 from nitter_scraper import NitterScraper
 from nitter_scraper import get_profile
@@ -110,6 +111,33 @@ for user in users:
 
 ```
 
+#### Poll Users for latest tweets example.
+```
+from nitter_scraper import NitterScraper
+import time
+
+last_tweet_id = None
+
+with NitterScraper(port=8008) as nitter:
+    while True:
+        for tweet in nitter.get_tweets("dgnsrekt", pages=1, break_on_tweet_id=last_tweet_id):
+
+            if tweet.is_pinned == True:
+                continue
+
+            if tweet.is_retweet == True:
+                continue
+
+            if tweet.tweet_id != last_tweet_id:
+                print(tweet.json(indent=4))
+
+            last_tweet_id = tweet.tweet_id
+
+            break
+
+        time.sleep(0.1)
+
+```
 ## Profile & Tweet objects
 The Profile and Tweet classes inherit from pydantic's BaseModel. This makes it easy to convert to a dict or json.
 ```
