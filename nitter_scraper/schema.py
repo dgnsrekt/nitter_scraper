@@ -28,15 +28,6 @@ class Tweet(Base):
     likes: int
     entries: Entries
 
-    # def to_dict(self):
-    # return asdict(self)
-
-    # def to_json(self, indent=4):
-    # return json.dumps(self, indent=indent, default=pydantic_encoder)
-
-    # def to_tuple(self):
-    # return astuple(self)
-
     @classmethod
     def from_dict(cls, elements):
         return cls(**elements)
@@ -59,15 +50,6 @@ class Profile(Base):
     user_id: Optional[int] = None
     location: Optional[str] = None
     website: Optional[str] = None
-
-    # def to_dict(self):
-    # return asdict(self)
-
-    # def to_json(self, indent=4):
-    # return json.dumps(self, indent=indent, default=pydantic_encoder)
-
-    # def to_tuple(self):
-    # return astuple(self)
 
     @classmethod
     def from_dict(cls, elements):

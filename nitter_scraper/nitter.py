@@ -28,11 +28,12 @@ class DockerBase(Base):
     client: ClassVar[DockerClient] = None
 
     @classmethod
-    def get_client(cls):
+    def _get_client(cls):
         if cls.client is None:
             cls.client = docker.from_env()
-            cls.client.ping()
-            logger.info(f"Docker connection successful.")
+
+        cls.client.ping()
+        logger.info(f"Docker connection successful.")
 
         return cls.client
 
@@ -89,7 +90,7 @@ class Nitter(DockerBase):
 
     def start(self):
         self._create_configfile()
-        client = self.get_client()
+        client = self._get_client()
 
         self.container = client.containers.run(
             image="zedeus/nitter:latest",
