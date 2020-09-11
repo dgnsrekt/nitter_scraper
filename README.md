@@ -8,7 +8,7 @@ If you have docker installed you can use the NitterScraper context manager. It t
 
 ## Basic Usage
 ```
-from nitter_scraper import NitterScraper, get_profile
+from nitter_scraper import NitterScraper
 
 with NitterScraper(host="0.0.0.0", port=8008) as nitter:
     profile = nitter.get_profile("dgnsrekt")
