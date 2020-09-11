@@ -109,7 +109,7 @@ class Nitter(DockerBase):
 
 
 @contextmanager
-def NitterDockerContainer(host: str = "0.0.0.0", port: int = 8080):
+def NitterScraper(host: str = "0.0.0.0", port: int = 8080):
     nitter = Nitter(host=host, port=port)
     nitter.start()
 

@@ -3,14 +3,14 @@
 This library is a work around for anyone who enjoyed the simplicity of the [twitter-scraper](https://github.com/bisguzar/twitter-scraper/) library and needs a quick replacement until it comes back up.  Nitter Scraper leverages running a docker container instance of [nitter](https://github.com/zedeus/nitter) to scrape tweets and profile information. I attempted to make the api work as closely as possible to the original [twitter-scraper](https://github.com/bisguzar/twitter-scraper/) to minimize refactoring of twitter scraping projects.
 
 ## Use Nitter Scraper with docker
-If you have docker installed you can use the NitterDockerContainer context manager. It takes care of running/destorying a local nitter docker container instance. If you don't have docker installed you can use the get_tweets and get_profile to scraping from https://www.nitter.net
+If you have docker installed you can use the NitterScraper context manager. It takes care of running/destorying a local nitter docker container instance. If you don't have docker installed you can use the get_tweets and get_profile to scraping from https://www.nitter.net
 
 
 ## Basic Usage
 ```
-from nitter_scraper import NitterDockerContainer, get_profile
+from nitter_scraper import NitterScraper, get_profile
 
-with NitterDockerContainer(host="0.0.0.0", port=8008) as nitter:
+with NitterScraper(host="0.0.0.0", port=8008) as nitter:
     profile = nitter.get_profile("dgnsrekt")
     print(profile.json(indent=4))
 
@@ -54,7 +54,7 @@ pip install nitter-scraper
 #### Scrape Users Tweets
 ```
 from nitter_scraper import get_tweets
-from nitter_scraper import NitterDockerContainer
+from nitter_scraper import NitterScraper
 
 from pprint import pprint
 
@@ -62,7 +62,7 @@ users = ["dgnsrekt"]
 
 print("Scraping with local nitter docker instance.")
 
-with NitterDockerContainer(host="0.0.0.0", port=8008) as nitter:
+with NitterScraper(host="0.0.0.0", port=8008) as nitter:
     for user in users:
         for tweet in nitter.get_tweets(user, pages=2):
             print()
@@ -81,7 +81,7 @@ for user in users:
 
 #### Scrape User Profiles
 ```
-from nitter_scraper import NitterDockerContainer
+from nitter_scraper import NitterScraper
 from nitter_scraper import get_profile
 
 from pprint import pprint
@@ -90,7 +90,7 @@ users = ["dgnsrekt"]
 
 print("Scraping with local nitter docker instance.")
 
-with NitterDockerContainer(host="0.0.0.0", port=8008) as nitter:
+with NitterScraper(host="0.0.0.0", port=8008) as nitter:
     for user in users:
         profile = nitter.get_profile(user, not_found_ok=True)
         print(profile)
