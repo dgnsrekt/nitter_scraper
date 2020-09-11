@@ -26,10 +26,7 @@ def profile_parser(elements):
     if elements.get("location"):
         elements["location"] = elements["location"].text
 
-    if elements.get("is_verified"):
-        elements["is_verified"] = True
-    else:
-        elements["is_verified"] = False
+    elements["is_verified"] = True if elements.get("is_verified") else False
 
     if elements.get("biography"):
         elements["biography"] = elements["biography"].text

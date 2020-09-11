@@ -4,4 +4,4 @@ from nitter_scraper.tweets import get_tweets
 
 __all__ = ["get_profile", "get_tweets", "NitterScraper"]
 
-__version__ = "0.4.3"
+__version__ = "0.4.4"
