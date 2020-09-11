@@ -95,8 +95,8 @@ def element_parser(html):
     return elements
 
 
-def get_profile(user: str, not_found_ok: bool = False, address="https://nitter.net"):
-    url = f"{address}/{user}"
+def get_profile(username: str, not_found_ok: bool = False, address="https://nitter.net"):
+    url = f"{address}/{username}"
     session = HTMLSession()
     response = session.get(url)
 
@@ -110,4 +110,4 @@ def get_profile(user: str, not_found_ok: bool = False, address="https://nitter.n
         return None
 
     else:
-        raise ValueError(f'Oops! Either "{user}" does not exist or is private.')
+        raise ValueError(f'Oops! Either "{username}" does not exist or is private.')

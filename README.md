@@ -1,19 +1,42 @@
 # Nitter Scraper
 
-This library is a work around for anyone who enjoyed the simplicity of the [twitter-scraper](https://github.com/bisguzar/twitter-scraper/) library and needs a quick replacement until it comes back up.  Nitter Scraper leverages running a docker instance of [nitter](https://github.com/zedeus/nitter) to scrape tweets and profile information. I attempted to make the api work as closely as possible to the original to minimize refactoring of other projects.
+This library is a work around for anyone who enjoyed the simplicity of the [twitter-scraper](https://github.com/bisguzar/twitter-scraper/) library and needs a quick replacement until it comes back up.  Nitter Scraper leverages running a docker container instance of [nitter](https://github.com/zedeus/nitter) to scrape tweets and profile information. I attempted to make the api work as closely as possible to the original [twitter-scraper](https://github.com/bisguzar/twitter-scraper/) to minimize refactoring of twitter scraping projects.
 
 ## Use Nitter Scraper with docker
-If you have docker installed you can use the NitterDockerContainer manager. It takes care of starting/stoping a local nitter docker container and provides the address to scrape from. If you don't use the NitterDockerContainer the get_tweets and get_profile methods will resolve to scraping from https://nitter.net
+If you have docker installed you can use the NitterDockerContainer context manager. It takes care of running/destorying a local nitter docker container instance. If you don't have docker installed you can use the get_tweets and get_profile to scraping from https://www.nitter.net
+
+
+## Basic Usage
+```
+from nitter_scraper import NitterDockerContainer, get_profile
+
+with NitterDockerContainer(host="0.0.0.0", port=8008) as nitter:
+    profile = nitter.get_profile("dgnsrekt")
+    print(profile.json(indent=4))
 
 ```
-from nitter_scraper import NitterDockerContainer, get_tweets
+#### Output
+```
+2020-09-11 10:11:08.533 | INFO     | nitter_scraper.nitter:get_client:35 - Docker connection successful.
+2020-09-11 10:11:10.227 | INFO     | nitter_scraper.nitter:start:102 - Running container admiring_panini 368437c322.
+{
+    "username": "DGNSREKT",
+    "name": "DGNSREKT",
+    "profile_photo": "/pic/profile_images%2F1304387984440152064%2FiWh8NV8M.png",
+    "tweets_count": 2897,
+    "following_count": 905,
+    "followers_count": 119,
+    "likes_count": 4994,
+    "is_verified": false,
+    "banner_photo": "/pic/profile_banners%2F2474416796%2F1599825305%2F1500x500",
+    "biography": "BITCOIN IS DEAD AGAIN. :(",
+    "user_id": 2474416796,
+    "location": "Moon",
+    "website": "https://github.com/dgnsrekt"
+}
+2020-09-11 10:11:11.007 | INFO     | nitter_scraper.nitter:stop:105 - Stopping container admiring_panini 368437c322.
+2020-09-11 10:11:16.346 | INFO     | nitter_scraper.nitter:stop:108 - Container admiring_panini 368437c322 Destroyed.
 
-with NitterDockerContainer(host="0.0.0.0", port=8008) as nitter: #<-- This version will make requests to a local docker container
-    for tweet in get_tweets("dgnsrekt", address=nitter.address):
-        print(tweet.json(indent=4))
-
-for tweet in get_tweets("dgnsrekt"): #<-- This version will make requests to https://www.nitter.net
-    print(tweet.json(indent=4))
 
 ```
 
@@ -28,37 +51,60 @@ pip install nitter-scraper
 ```
 
 ## Examples
-
-#### Run
+#### Scrape Users Tweets
 ```
-from nitter_scraper import NitterDockerContainer, get_profile
+from nitter_scraper import get_tweets
+from nitter_scraper import NitterDockerContainer
+
+from pprint import pprint
+
+users = ["dgnsrekt"]
+
+print("Scraping with local nitter docker instance.")
 
 with NitterDockerContainer(host="0.0.0.0", port=8008) as nitter:
-    profile = get_profile("dgnsrekt", address=nitter.address)
-    print(profile.json(indent=4))
+    for user in users:
+        for tweet in nitter.get_tweets(user, pages=2):
+            print()
+            pprint(tweet.dict())
+            print(tweet.json(indent=4))
 
+
+print("Scraping from https://www.nitter.net.")
+
+for user in users:
+    for tweet in get_tweets(user, pages=2):
+        print()
+        pprint(tweet.dict())
+        print(tweet.json(indent=4))
 ```
-#### Output
+
+#### Scrape User Profiles
 ```
-2020-09-09 21:07:33.025 | INFO     | nitter_scraper.nitter:get_client:33 - Docker connection successful.
-2020-09-09 21:07:34.992 | INFO     | nitter_scraper.nitter:start:89 - Running container dreamy_bhaskara a812e3d41f.
-{
-    "username": "DGNSREKT",
-    "name": "DGNSREKT",
-    "profile_photo": "/pic/profile_images%2F1303625659399516160%2FjLtzJMAr.png",
-    "tweets_count": 2898,
-    "following_count": 904,
-    "followers_count": 119,
-    "likes_count": 4995,
-    "is_verified": false,
-    "banner_photo": "/pic/profile_banners%2F2474416796%2F1599643557%2F1500x500",
-    "biography": "TOO THE MOON!!!",
-    "user_id": 2474416796,
-    "location": "Moon",
-    "website": "https://github.com/dgnsrekt"
-}
-2020-09-09 21:07:35.920 | INFO     | nitter_scraper.nitter:stop:92 - Stopping container dreamy_bhaskara a812e3d41f.
-2020-09-09 21:07:41.335 | INFO     | nitter_scraper.nitter:stop:95 - Container dreamy_bhaskara a812e3d41f Destroyed.
+from nitter_scraper import NitterDockerContainer
+from nitter_scraper import get_profile
+
+from pprint import pprint
+
+users = ["dgnsrekt"]
+
+print("Scraping with local nitter docker instance.")
+
+with NitterDockerContainer(host="0.0.0.0", port=8008) as nitter:
+    for user in users:
+        profile = nitter.get_profile(user, not_found_ok=True)
+        print(profile)
+        pprint(profile.dict())
+        print(profile.json(indent=4))
+
+
+print("Scraping from https://www.nitter.net.")
+
+for user in users:
+    profile = get_profile(user, not_found_ok=True)
+    print(profile)
+    pprint(profile.dict())
+    print(profile.json(indent=4))
 
 ```
 

@@ -124,7 +124,9 @@ def pagination_parser(timeline, address, username):
     return f"{address}/{username}{next_page}"
 
 
-def get_tweets(username, pages=25, break_on_tweet_id: int = None, address="https://nitter.net"):
+def get_tweets(
+    username: str, pages: int = 25, break_on_tweet_id: int = None, address="https://nitter.net"
+):
     url = f"{address}/{username}"
     session = HTMLSession()
 

@@ -16,6 +16,8 @@ from jinja2 import Environment, FileSystemLoader
 from contextlib import contextmanager, ExitStack
 
 from nitter_scraper.paths import TEMPLATES_DIRECTORY, PROJECT_ROOT
+from nitter_scraper.profile import get_profile
+from nitter_scraper.tweets import get_tweets
 
 from loguru import logger
 
@@ -73,6 +75,17 @@ class Nitter(DockerBase):
         self.tempfile = NamedTemporaryFile(dir=PROJECT_ROOT)
         self.tempfile.write(config.encode())
         self.tempfile.seek(0)
+
+    def get_profile(self, username: str, not_found_ok: bool = False):
+        return get_profile(username=username, not_found_ok=not_found_ok, address=self.address)
+
+    def get_tweets(self, username: str, pages: int = 25, break_on_tweet_id: Optional[int] = None):
+        return get_tweets(
+            username=username,
+            pages=pages,
+            break_on_tweet_id=break_on_tweet_id,
+            address=self.address,
+        )
 
     def start(self):
         self._create_configfile()
