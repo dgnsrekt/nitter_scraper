@@ -3,7 +3,7 @@
 This library is a work around for anyone who enjoyed the simplicity of the [twitter-scraper](https://github.com/bisguzar/twitter-scraper/) library and needs a quick replacement until it comes back up.  Nitter Scraper leverages running a docker container instance of [nitter](https://github.com/zedeus/nitter) to scrape tweets and profile information. I attempted to make the api work as closely as possible to the original [twitter-scraper](https://github.com/bisguzar/twitter-scraper/) to minimize refactoring of twitter scraping projects.
 
 ## Use Nitter Scraper with docker
-If you have docker installed you can use the NitterScraper context manager. It takes care of running/destorying a local nitter docker container instance. If you don't have docker installed you can use the get_tweets and get_profile to scraping from https://www.nitter.net
+If you have docker installed you can use the NitterScraper context manager. It takes care of running/destorying a local nitter docker container instance. If you don't have docker installed you can use the get_tweets and get_profile to scrape from https://www.nitter.net
 
 
 ## Basic Usage
