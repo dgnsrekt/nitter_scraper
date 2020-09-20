@@ -35,11 +35,12 @@ def parse_user_id_from_banner_url(banner_url: str) -> str:
     """Parses the users id from the users banner photo url.
     The user id can only be parsed from the banner photos url.
 
-    /pic/profile_banners%2F2474416796%2F1600567028%2F1500x500 -> 2474416796
-                           ^        ^
-                           |        |
-                           ----------
-                           user id section in banner link
+    Example:
+        /pic/profile_banners%2F2474416796%2F1600567028%2F1500x500 -> 2474416796
+                               ^        ^
+                               |        |
+                               ----------
+                               user id section in banner link
 
     Args:
         banner_url: URL of the profiles banner photo.
@@ -62,8 +63,6 @@ def stat_cleaner(stat: str) -> int:
         A stat with commas removed and converted to int.
 
     """
-    print(stat)
-    print(int(stat.replace(",", "")))
     return int(stat.replace(",", ""))
 
 
