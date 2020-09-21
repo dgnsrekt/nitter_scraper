@@ -1,7 +1,7 @@
-from nitter_scraper import get_tweets
-from nitter_scraper import NitterScraper
-
 from pprint import pprint
+
+import nitter_scraper
+from nitter_scraper import NitterScraper
 
 users = ["dgnsrekt"]
 
@@ -18,7 +18,7 @@ with NitterScraper(host="0.0.0.0", port=8008) as nitter:
 print("Scraping from https://www.nitter.net.")
 
 for user in users:
-    for tweet in get_tweets(user, pages=2):
+    for tweet in nitter_scraper.get_tweets(user, pages=2):
         print()
         pprint(tweet.dict())
         print(tweet.json(indent=4))
