@@ -1,6 +1,18 @@
-'{"tweet_id": 1290696988086984707, "tweet_url": "/DGNSREKT/status/1290696988086984707#m",
-  "username": "DGNSREKT", "is_retweet": false, "is_pinned": false, "time": "2020-08-04T17:11:56",
-  "text": "repl.it/@dgnsrekt/symbol-sea\u2026 Wrote this little script today. Gives
-  you the ability to use tradingviews api to search if a stock symbol exists.", "replies":
-  0, "retweets": 0, "likes": 1, "entries": {"hashtags": [], "cashtags": [], "urls":
-  ["https://repl.it/@dgnsrekt/symbol-search"], "photos": [], "videos": []}}'
+entries:
+  cashtags: []
+  hashtags: []
+  photos: []
+  urls:
+  - https://repl.it/@dgnsrekt/symbol-search
+  videos: []
+is_pinned: false
+is_retweet: false
+likes: 1
+replies: 0
+retweets: 0
+text: repl.it/@dgnsrekt/symbol-sea… Wrote this little script today. Gives you the
+  ability to use tradingviews api to search if a stock symbol exists.
+time: 2020-08-04 17:11:56
+tweet_id: '1290696988086984707'
+tweet_url: /DGNSREKT/status/1290696988086984707#m
+username: DGNSREKT

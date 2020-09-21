@@ -1,6 +1,18 @@
-'{"tweet_id": 1277119538509692928, "tweet_url": "/RT_com/status/1277119538509692928#m",
-  "username": "RT_com", "is_retweet": true, "is_pinned": false, "time": "2020-06-28T06:00:00",
-  "text": "Chinese researchers have developed a way to keep fish alive for 72 hours
-  without water", "replies": 188, "retweets": 271, "likes": 681, "entries": {"hashtags":
-  [], "cashtags": [], "urls": [], "photos": ["/pic/amplify_video_thumb%2F1276937483595505664%2Fimg%2Fvz7s8DgKMeVAQGpa.jpg%3Asmall"],
-  "videos": []}}'
+entries:
+  cashtags: []
+  hashtags: []
+  photos:
+  - /pic/amplify_video_thumb%2F1276937483595505664%2Fimg%2Fvz7s8DgKMeVAQGpa.jpg%3Asmall
+  urls: []
+  videos: []
+is_pinned: false
+is_retweet: true
+likes: 681
+replies: 188
+retweets: 271
+text: Chinese researchers have developed a way to keep fish alive for 72 hours without
+  water
+time: 2020-06-28 06:00:00
+tweet_id: '1277119538509692928'
+tweet_url: /RT_com/status/1277119538509692928#m
+username: RT_com

@@ -1,6 +1,19 @@
-'{"tweet_id": 1287423616104239107, "tweet_url": "/maxkeiser/status/1287423616104239107#m",
-  "username": "maxkeiser", "is_retweet": true, "is_pinned": false, "time": "2020-07-26T16:24:43",
-  "text": "His wrong calls on #Bitcoin are starting to fry his brain. It\u2019s not
-  too late... Admit the error and move on.", "replies": 2, "retweets": 5, "likes":
-  44, "entries": {"hashtags": ["#Bitcoin"], "cashtags": [], "urls": [], "photos":
-  ["/pic/media%2FEd0l0LSXgAUWpfd.jpg%3Fname%3Dsmall"], "videos": []}}'
+entries:
+  cashtags: []
+  hashtags:
+  - '#Bitcoin'
+  photos:
+  - /pic/media%2FEd0l0LSXgAUWpfd.jpg%3Fname%3Dsmall
+  urls: []
+  videos: []
+is_pinned: false
+is_retweet: true
+likes: 44
+replies: 2
+retweets: 5
+text: 'His wrong calls on #Bitcoin are starting to fry his brain. It’s not too late...
+  Admit the error and move on.'
+time: 2020-07-26 16:24:43
+tweet_id: '1287423616104239107'
+tweet_url: /maxkeiser/status/1287423616104239107#m
+username: maxkeiser

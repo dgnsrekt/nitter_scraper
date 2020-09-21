@@ -1,7 +1,21 @@
-'{"tweet_id": 1276517572263809025, "tweet_url": "/jimmysong/status/1276517572263809025#m",
-  "username": "jimmysong", "is_retweet": true, "is_pinned": false, "time": "2020-06-26T14:08:00",
-  "text": "#Bitcoin cannot be confiscated or eliminated with a gun because #Bitcoin
-  is metaphysical in the same way ideas, philosophies or beliefs are. You can burn
-  books, jail people and seize computers, but #Bitcoin will survive.", "replies":
-  28, "retweets": 107, "likes": 496, "entries": {"hashtags": ["#Bitcoin", "#Bitcoin",
-  "#Bitcoin"], "cashtags": [], "urls": [], "photos": [], "videos": []}}'
+entries:
+  cashtags: []
+  hashtags:
+  - '#Bitcoin'
+  - '#Bitcoin'
+  - '#Bitcoin'
+  photos: []
+  urls: []
+  videos: []
+is_pinned: false
+is_retweet: true
+likes: 496
+replies: 28
+retweets: 107
+text: '#Bitcoin cannot be confiscated or eliminated with a gun because #Bitcoin is
+  metaphysical in the same way ideas, philosophies or beliefs are. You can burn books,
+  jail people and seize computers, but #Bitcoin will survive.'
+time: 2020-06-26 14:08:00
+tweet_id: '1276517572263809025'
+tweet_url: /jimmysong/status/1276517572263809025#m
+username: jimmysong

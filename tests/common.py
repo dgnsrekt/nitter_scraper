@@ -1,5 +1,5 @@
-import pytest
 from nitter_scraper.paths import TEST_DIRECTORY
+import pytest
 from requests_html import HTML
 
 URL = "https://www.nitter.net"

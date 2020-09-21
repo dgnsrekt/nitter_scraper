@@ -1,15 +1,14 @@
-import pytest
-from pytest_regressions import data_regression
-
-from nitter_scraper.paths import TEST_DIRECTORY
 from nitter_scraper.profile import (
-    element_parser,
+    html_parser,
+    parse_user_id_from_banner,
     profile_parser,
-    username_cleaner,
-    parse_user_id_from_banner_url,
     stat_cleaner,
+    username_cleaner,
 )
-from .common import profile_page_fixture
+import pytest
+from pytest_regressions import data_regression  # noqa: F401
+
+from .common import profile_page_fixture  # noqa: F401
 
 
 @pytest.mark.parametrize(
@@ -27,20 +26,20 @@ def test_username_cleaner():
     assert after == target
 
 
-def test_parse_user_id_from_banner_url():
+def test_parse_user_id_from_banner():
     before = "/pic/profile_banners%2F2474416796%2F1600567028%2F1500x500 "
-    after = parse_user_id_from_banner_url(before)
+    after = parse_user_id_from_banner(before)
     target = "2474416796"
     assert after == target
 
 
-def test_element_parser(data_regression, profile_page_fixture):
-    elements = element_parser(profile_page_fixture)
+def test_html_parser(data_regression, profile_page_fixture):  # noqa: F811
+    elements = html_parser(profile_page_fixture)
     results = {k: v.text for k, v in elements.items()}
     data_regression.check(results)
 
 
-def test_profile_parser(data_regression, profile_page_fixture):
-    elements = element_parser(profile_page_fixture)
+def test_profile_parser(data_regression, profile_page_fixture):  # noqa: F811
+    elements = html_parser(profile_page_fixture)
     results = profile_parser(elements)
     data_regression.check(results)

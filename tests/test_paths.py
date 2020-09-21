@@ -1,8 +1,6 @@
-import tomlkit
-
-import nitter_scraper
-from nitter_scraper.paths import PROJECT_ROOT, SOURCE_ROOT
 from nitter_scraper import __version__
+from nitter_scraper.paths import PROJECT_ROOT, SOURCE_ROOT
+import tomlkit
 
 
 def test_sanity():

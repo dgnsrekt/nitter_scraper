@@ -1,6 +1,17 @@
-'{"tweet_id": 1291835605643599878, "tweet_url": "/HectorRosekrans/status/1291835605643599878#m",
-  "username": "HectorRosekrans", "is_retweet": true, "is_pinned": false, "time": "2020-08-07T20:36:24",
-  "text": "It\u2019s weird that no one tries to compete with bitcoin by making it
-  simpler Slower blocktimes, smaller blocks, lower cap, fewer op codes, etc", "replies":
-  21, "retweets": 14, "likes": 160, "entries": {"hashtags": [], "cashtags": [], "urls":
-  [], "photos": [], "videos": []}}'
+entries:
+  cashtags: []
+  hashtags: []
+  photos: []
+  urls: []
+  videos: []
+is_pinned: false
+is_retweet: true
+likes: 160
+replies: 21
+retweets: 14
+text: It’s weird that no one tries to compete with bitcoin by making it simpler Slower
+  blocktimes, smaller blocks, lower cap, fewer op codes, etc
+time: 2020-08-07 20:36:24
+tweet_id: '1291835605643599878'
+tweet_url: /HectorRosekrans/status/1291835605643599878#m
+username: HectorRosekrans
