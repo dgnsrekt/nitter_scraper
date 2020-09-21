@@ -1,4 +1,6 @@
-include poetry.lock
+include *.in
+include *lock
+include *.py
 include LICENSE
 include nitter_scraper/templates/nitter.conf
 recursive-include examples *.py
