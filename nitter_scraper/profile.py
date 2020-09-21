@@ -1,10 +1,12 @@
-from requests_html import HTMLSession, HTML
-from nitter_scraper.schema import Profile
 from typing import Dict, Optional
+
+from requests_html import HTML, HTMLSession
+
+from nitter_scraper.schema import Profile  # noqa: I100, I202
 
 
 def username_cleaner(username: str) -> str:
-    """Removes @ symbol from a username.
+    """Strips @ symbol from a username.
 
     Example:
         @dgnsrekt -> dgnsrekt
@@ -12,14 +14,15 @@ def username_cleaner(username: str) -> str:
     Args:
         username: username with @ symbol to remove.
 
-    Returns
-        username with @ symbol stripped.
+    Returns:
+        Username with @ symbol stripped.
     """
     return username.replace("@", "")
 
 
 def link_parser(element: HTML) -> str:
     """Gets the first link from an html element
+
     Used for the profiles website, photo and banner links.
 
     Args:
@@ -31,22 +34,25 @@ def link_parser(element: HTML) -> str:
     return list(element.links)[0]
 
 
-def parse_user_id_from_banner_url(banner_url: str) -> str:
+def parse_user_id_from_banner(banner_url: str) -> str:
     """Parses the users id from the users banner photo url.
+
     The user id can only be parsed from the banner photos url.
 
     Example:
+    ```
         /pic/profile_banners%2F2474416796%2F1600567028%2F1500x500 -> 2474416796
                                ^        ^
                                |        |
                                ----------
                                user id section in banner link
+    ```
 
     Args:
         banner_url: URL of the profiles banner photo.
 
     Returns:
-        A taget profiles user id.
+        The target profiles user id.
 
     """
     return banner_url.split("%2F")[1]
@@ -54,6 +60,7 @@ def parse_user_id_from_banner_url(banner_url: str) -> str:
 
 def stat_cleaner(stat: str) -> int:
     """Cleans and converts single stat.
+
     Used for the tweets, followers, following, and likes count sections.
 
     Args:
@@ -68,6 +75,8 @@ def stat_cleaner(stat: str) -> int:
 
 def profile_parser(elements: Dict) -> Dict:
     """Converts parsed sections to text.
+
+    Cleans and processes a dictionary of gathered html elements.
 
     Args:
         elements: Elements prepared to clean and convert.
@@ -96,7 +105,7 @@ def profile_parser(elements: Dict) -> Dict:
 
     if elements.get("banner_photo"):
         elements["banner_photo"] = link_parser(elements["banner_photo"])
-        elements["user_id"] = parse_user_id_from_banner_url(elements["banner_photo"])
+        elements["user_id"] = parse_user_id_from_banner(elements["banner_photo"])
 
     if elements.get("tweets_count"):
         elements["tweets_count"] = stat_cleaner(elements["tweets_count"].text)
@@ -113,14 +122,17 @@ def profile_parser(elements: Dict) -> Dict:
     return elements
 
 
-def element_parser(html: HTML) -> Dict:
+def html_parser(html: HTML) -> Dict:
     """Parses HTML element into individual sections
+
+    Given an html element the html_parser will search for each profile section using
+    CSS selectors. All parsed html elements are gathered into a dictionary and returned.
 
     Args:
         html: HTML element from a successful nitter profile scraped response.
 
     Returns:
-        A dictionary elements from the parsed sections.
+        A dictionary of found elements from the parsed sections.
 
     """
     elements = {}
@@ -166,10 +178,10 @@ def get_profile(
     Args:
         username: The target profiles username.
         not_found_ok: If not_found_ok is false (the default), a ValueError is raised if the target
-            profile doesn't exist. if not_found_ok is true, None will be returned instead.
-        address: The address to scrape from. The default scrape location is 'https://nitter.net'.
-            This value will normally be replaced by the address of a local docker container
-            instance of nitter.
+            profile doesn't exist. If not_found_ok is true, None will be returned instead.
+        address: The address to scrape profile data from. The default scrape location is
+            'https://nitter.net' which should be used as a backup. This value will normally be
+            replaced by the address of a local docker container instance of nitter.
 
     Returns:
         Profile object if successfully scraped, otherwise None.
@@ -184,7 +196,7 @@ def get_profile(
     response = session.get(url)
 
     if response.status_code == 200:  # user exists
-        elements = element_parser(response.html)
+        elements = html_parser(response.html)
         parsed_elements = profile_parser(elements)
         return Profile.from_dict(parsed_elements)
 

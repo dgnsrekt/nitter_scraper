@@ -1,0 +1,88 @@
+loaders:
+  - type: python
+    search_path: [nitter_scraper]
+
+
+processors:
+  - type: filter
+  - type: google
+  - type: crossref
+
+renderer:
+  type: mkdocs
+  markdown:
+    signature_with_decorators: False
+    signature_in_header: False
+    signature_with_def: True
+    descriptive_class_title: False
+    descriptive_module_title: True
+    add_method_class_prefix: True
+    add_member_class_prefix: False
+    classdef_code_block: False
+    classdef_render_init_signature_if_needed: True
+    signature_code_block: True
+    render_module_header: False
+    insert_header_anchors: True
+    # escape_html_in_docstring: False
+    code_lang: True
+    html_headers: False
+    code_headers: True
+
+    # render_toc: True
+
+    # source_linker:
+    #   type: github
+    #   repo: dgnsrekt/nitter_scraper/nitter_scraper
+
+  site_name: nitter_scraper
+  clean_render: True
+  pages:
+    - title: Home
+      name: index
+      source: README.md
+
+    - title: Examples
+      name: examples
+      source: examples/EXAMPLES.md
+
+    - title: API Documentation
+      name: api
+      contents:
+        - nitter.*
+        # - paths.*
+        - profile.*
+        - schema.*
+        - tweets.*
+
+  mkdocs_config:
+
+    repo_url: https://github.com/dgnsrekt/nitter_scraper
+    theme:
+      name: material
+      palette:
+        primary: black
+        accent: indigo
+        scheme: slate
+      icon:
+        repo: fontawesome/brands/github-alt
+
+    markdown_extensions:
+      - pymdownx.highlight
+      - pymdownx.superfences
+
+    extra:
+      social:
+        - icon: fontawesome/brands/twitter
+          link: https://twitter.com/dgnsrekt
+          name: dgnsrekt on twitter
+
+        - icon: fontawesome/brands/github
+          link: https://github.com/dgnsrekt
+          name: dgnsrekt on twitter
+
+        - icon: fontawesome/brands/telegram
+          link: https://t.me/dgnsrekt
+          name: dgnsrekt on twitter
+
+        - icon: fontawesome/solid/paper-plane
+          link: mailto:dgnsrekt@pm.me

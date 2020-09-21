@@ -1,7 +1,10 @@
-from requests_html import HTMLSession, HTML
-import re
 from datetime import datetime
-from nitter_scraper.schema import Tweet
+import re
+from typing import Dict, Optional
+
+from requests_html import HTMLSession
+
+from nitter_scraper.schema import Tweet  # noqa: I100, I202
 
 
 def link_parser(tweet_link):
@@ -68,7 +71,7 @@ def url_parser(links):
     return sorted(filter(lambda link: "http://" in link or "https://" in link, links))
 
 
-def parse_tweet(html):
+def parse_tweet(html) -> Dict:
     data = {}
     id, username, url = link_parser(html.find(".tweet-link", first=True))
     data["tweet_id"] = id
@@ -112,21 +115,37 @@ def parse_tweet(html):
 
     data["entries"] = entries
     # quote = html.find(".quote", first=True) #NOTE: Maybe useful later on
-    return Tweet.from_dict(data)
+    return data
 
 
 def timeline_parser(html):
     return html.find(".timeline", first=True)
 
 
-def pagination_parser(timeline, address, username):
+def pagination_parser(timeline, address, username) -> str:
     next_page = list(timeline.find(".show-more")[-1].links)[0]
     return f"{address}/{username}{next_page}"
 
 
 def get_tweets(
-    username: str, pages: int = 25, break_on_tweet_id: int = None, address="https://nitter.net"
-):
+    username: str,
+    pages: int = 25,
+    break_on_tweet_id: Optional[int] = None,
+    address="https://nitter.net",
+) -> Tweet:
+    """Gets the target users tweets
+
+    Args:
+        username: Targeted users username.
+        pages: Max number of pages to lookback starting from the latest tweet.
+        break_on_tweet_id: Gives the ability to break out of a loop if a tweets id is found.
+        address: The address to scrape from. The default is https://nitter.net which should
+            be used as a fallback address.
+
+    Yields:
+        Tweet Objects
+
+    """
     url = f"{address}/{username}"
     session = HTMLSession()
 
@@ -145,7 +164,8 @@ def get_tweets(
                     if "show-more" in item.attrs["class"]:
                         continue
 
-                    tweet = parse_tweet(item)
+                    tweet_data = parse_tweet(item)
+                    tweet = Tweet.from_dict(tweet_data)
 
                     if tweet.tweet_id == break_on_tweet_id:
                         pages = 0
