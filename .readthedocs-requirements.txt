@@ -1,3 +1,2 @@
 readthedocs-custom-steps
-mkdocs-material
 pydoc-markdown
