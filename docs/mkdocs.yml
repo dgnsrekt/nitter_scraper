@@ -1,4 +1,4 @@
-docs_dir: docs/content
+docs_dir: content
 extra:
   social:
   - icon: fontawesome/brands/twitter
