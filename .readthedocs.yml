@@ -1,5 +1,6 @@
 version: 2
-mkdocs: {}  # tell readthedocs to use mkdocs
+mkdocs:
+    configuration: docs/mkdocs.yml  # tell readthedocs to use mkdocs
 python:
   version: 3.7
   install:
