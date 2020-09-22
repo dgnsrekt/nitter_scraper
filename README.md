@@ -1,6 +1,6 @@
 # Nitter Scraper
 
-Nitter Scraper is for anyone who enjoys the [twitter-scraper](https://github.com/bisguzar/twitter-scraper/) library. Nitter Scraper leverages running a local docker container instance of [nitter](https://github.com/zedeus/nitter) to scrape a users tweets and profile information without the twitter api ratelimit. This api works similar to the [twitter-scraper](https://github.com/bisguzar/twitter-scraper/) project with a few enhancements.
+Nitter Scraper is for anyone who enjoys the [twitter-scraper](https://github.com/bisguzar/twitter-scraper/) library. Nitter Scraper leverages running a local docker container instance of [nitter](https://github.com/zedeus/nitter) to scrape a users tweets and profile information without the twitter api ratelimit. This api works similar to the [twitter-scraper](https://github.com/bisguzar/twitter-scraper/) project with a few differences.
 
 ## Docker Engine
 For the best experience use this library with [Docker Engine](https://docs.docker.com/engine/) properly installed. The NitterScraper manager will start, stop and remove a docker instance of [nitter](https://hub.docker.com/r/zedeus/nitter). If you can't run docker you can import the get_tweets and get_profile functions to scrape from [nitter.net](http://www.nitter.net).
