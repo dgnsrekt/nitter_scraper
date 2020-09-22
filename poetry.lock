@@ -126,7 +126,7 @@ toml = "*"
 test = ["mock (>=3.0.0)"]
 
 [[package]]
-category = "main"
+category = "dev"
 description = "Composable command line interface toolkit"
 name = "click"
 optional = false
@@ -207,30 +207,6 @@ version = "0.6.2"
 
 [[package]]
 category = "main"
-description = "Docspec is a JSON object specification for representing API documentation of programming languages."
-name = "docspec"
-optional = false
-python-versions = "*"
-version = "0.2.0"
-
-[package.dependencies]
-"nr.databind.core" = ">=0.0.19,<0.1.0"
-"nr.databind.json" = ">=0.0.9,<0.1.0"
-
-[[package]]
-category = "main"
-description = "A parser based on lib2to3 producing docspec data from Python source code."
-name = "docspec-python"
-optional = false
-python-versions = "*"
-version = "0.0.7"
-
-[package.dependencies]
-docspec = ">=0.2.0,<0.3.0"
-"nr.sumtype" = ">=0.0.3,<0.1.0"
-
-[[package]]
-category = "main"
 description = "Up to date simple useragent faker with real world database"
 name = "fake-useragent"
 optional = false
@@ -261,14 +237,6 @@ pyflakes = ">=2.2.0,<2.3.0"
 [package.dependencies.importlib-metadata]
 python = "<3.8"
 version = "*"
-
-[[package]]
-category = "dev"
-description = "Clean single-source support for Python 3 and 2"
-name = "future"
-optional = false
-python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
-version = "0.18.2"
 
 [[package]]
 category = "main"
@@ -317,30 +285,6 @@ MarkupSafe = ">=0.23"
 i18n = ["Babel (>=0.8)"]
 
 [[package]]
-category = "dev"
-description = "Lightweight pipelining: using Python functions as pipeline jobs."
-marker = "python_version > \"2.7\""
-name = "joblib"
-optional = false
-python-versions = ">=3.6"
-version = "0.16.0"
-
-[[package]]
-category = "dev"
-description = "Python LiveReload is an awesome tool for web developers"
-name = "livereload"
-optional = false
-python-versions = "*"
-version = "2.6.3"
-
-[package.dependencies]
-six = "*"
-
-[package.dependencies.tornado]
-python = ">=2.8"
-version = "*"
-
-[[package]]
 category = "main"
 description = "Python logging made (stupidly) simple"
 name = "loguru"
@@ -356,26 +300,6 @@ win32-setctime = ">=1.0.0"
 dev = ["codecov (>=2.0.15)", "colorama (>=0.3.4)", "flake8 (>=3.7.7)", "tox (>=3.9.0)", "tox-travis (>=0.12)", "pytest (>=4.6.2)", "pytest-cov (>=2.7.1)", "Sphinx (>=2.2.1)", "sphinx-autobuild (>=0.7.1)", "sphinx-rtd-theme (>=0.4.3)", "black (>=19.10b0)", "isort (>=5.1.1)"]
 
 [[package]]
-category = "dev"
-description = "A Python implementation of Lunr.js"
-name = "lunr"
-optional = false
-python-versions = "*"
-version = "0.5.8"
-
-[package.dependencies]
-future = ">=0.16.0"
-six = ">=1.11.0"
-
-[package.dependencies.nltk]
-optional = true
-python = ">=2.8"
-version = ">=3.2.5"
-
-[package.extras]
-languages = ["nltk (>=3.2.5,<3.5)", "nltk (>=3.2.5)"]
-
-[[package]]
 category = "main"
 description = "Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API."
 name = "lxml"
@@ -388,22 +312,6 @@ cssselect = ["cssselect (>=0.7)"]
 html5 = ["html5lib"]
 htmlsoup = ["beautifulsoup4"]
 source = ["Cython (>=0.29.7)"]
-
-[[package]]
-category = "dev"
-description = "Python implementation of Markdown."
-name = "markdown"
-optional = false
-python-versions = ">=3.5"
-version = "3.2.2"
-
-[package.dependencies]
-[package.dependencies.importlib-metadata]
-python = "<3.8"
-version = "*"
-
-[package.extras]
-testing = ["coverage", "pyyaml"]
 
 [[package]]
 category = "main"
@@ -423,52 +331,6 @@ version = "0.6.1"
 
 [[package]]
 category = "dev"
-description = "Project documentation with Markdown."
-name = "mkdocs"
-optional = false
-python-versions = ">=3.5"
-version = "1.1.2"
-
-[package.dependencies]
-Jinja2 = ">=2.10.1"
-Markdown = ">=3.2.1"
-PyYAML = ">=3.10"
-click = ">=3.3"
-livereload = ">=2.5.1"
-tornado = ">=5.0"
-
-[package.dependencies.lunr]
-extras = ["languages"]
-version = "0.5.8"
-
-[[package]]
-category = "dev"
-description = "A Material Design theme for MkDocs"
-name = "mkdocs-material"
-optional = false
-python-versions = "*"
-version = "5.5.13"
-
-[package.dependencies]
-Pygments = ">=2.4"
-markdown = ">=3.2"
-mkdocs = ">=1.1"
-mkdocs-material-extensions = ">=1.0"
-pymdown-extensions = ">=7.0"
-
-[[package]]
-category = "dev"
-description = "Extension pack for Python Markdown."
-name = "mkdocs-material-extensions"
-optional = false
-python-versions = ">=3.5"
-version = "1.0"
-
-[package.dependencies]
-mkdocs-material = ">=5.0.0"
-
-[[package]]
-category = "dev"
 description = "More routines for operating on iterables, beyond itertools"
 name = "more-itertools"
 optional = false
@@ -482,29 +344,6 @@ name = "mypy-extensions"
 optional = false
 python-versions = "*"
 version = "0.4.3"
-
-[[package]]
-category = "dev"
-description = "Natural Language Toolkit"
-marker = "python_version > \"2.7\""
-name = "nltk"
-optional = false
-python-versions = "*"
-version = "3.5"
-
-[package.dependencies]
-click = "*"
-joblib = "*"
-regex = "*"
-tqdm = "*"
-
-[package.extras]
-all = ["requests", "numpy", "python-crfsuite", "scikit-learn", "twython", "pyparsing", "scipy", "matplotlib", "gensim"]
-corenlp = ["requests"]
-machine_learning = ["gensim", "numpy", "python-crfsuite", "scikit-learn", "scipy"]
-plot = ["matplotlib"]
-tgrep = ["pyparsing"]
-twitter = ["twython"]
 
 [[package]]
 category = "dev"
@@ -526,148 +365,6 @@ version = "*"
 
 [package.extras]
 tox_to_nox = ["jinja2", "tox"]
-
-[[package]]
-category = "main"
-description = "Useful container datatypes for Python 2 and 3."
-name = "nr.collections"
-optional = false
-python-versions = "*"
-version = "0.0.1"
-
-[package.dependencies]
-"nr.metaclass" = ">=0.0.1,<0.1.0"
-six = ">=1.11.0,<2.0.0"
-
-[package.extras]
-test = ["nr.fs (>=1.5.0,<2.0.0)"]
-
-[[package]]
-category = "main"
-description = "Bind structured data directly to typed objects."
-name = "nr.databind.core"
-optional = false
-python-versions = "*"
-version = "0.0.21"
-
-[package.dependencies]
-"nr.collections" = ">=0.0.1,<1.0.0"
-"nr.interface" = ">=0.0.1,<0.1.0"
-"nr.pylang.utils" = ">=0.0.3,<0.1.0"
-"nr.stream" = ">=0.0.1,<0.1.0"
-
-[package.extras]
-test = ["pytest", "pyyaml"]
-
-[[package]]
-category = "main"
-description = "Deserialize JSON into Python objects and reverse."
-name = "nr.databind.json"
-optional = false
-python-versions = "*"
-version = "0.0.13"
-
-[package.dependencies]
-"nr.collections" = ">=0.0.1,<1.0.0"
-"nr.databind.core" = ">=0.0.16,<0.1.0"
-"nr.interface" = ">=0.0.1,<0.1.0"
-"nr.parsing.date" = ">=0.1.0,<1.0.0"
-"nr.pylang.utils" = ">=0.0.1,<0.1.0"
-
-[package.extras]
-test = ["pytest", "pyyaml", "flask"]
-
-[[package]]
-category = "main"
-description = "Filesystem and path manipulation tools."
-name = "nr.fs"
-optional = false
-python-versions = "*"
-version = "1.6.2"
-
-[package.dependencies]
-six = ">=1.11.0,<2.0.0"
-
-[[package]]
-category = "main"
-description = "Interface definitions for Python."
-name = "nr.interface"
-optional = false
-python-versions = "*"
-version = "0.0.3"
-
-[package.dependencies]
-"nr.collections" = ">=0.0.1,<1.0.0"
-"nr.metaclass" = ">=0.0.1,<0.1.0"
-"nr.pylang.utils" = ">=0.0.1,<0.1.0"
-six = ">=1.11.0,<2.0.0"
-
-[[package]]
-category = "main"
-description = "Metaclass utilities."
-name = "nr.metaclass"
-optional = false
-python-versions = "*"
-version = "0.0.5"
-
-[[package]]
-category = "main"
-description = "A simple and fast date parsing library. Uses dateutil for timezone offset support."
-name = "nr.parsing.date"
-optional = false
-python-versions = "*"
-version = "0.4.2"
-
-[package.dependencies]
-"nr.utils.re" = ">=0.1.0,<0.2.0"
-six = "*"
-
-[[package]]
-category = "main"
-description = "Package description here."
-name = "nr.pylang.utils"
-optional = false
-python-versions = "*"
-version = "0.0.3"
-
-[package.dependencies]
-"nr.collections" = ">=0.0.1,<1.0.0"
-
-[[package]]
-category = "main"
-description = "Use iterators like Java streams."
-name = "nr.stream"
-optional = false
-python-versions = "*"
-version = "0.0.4"
-
-[package.dependencies]
-"nr.collections" = ">=0.0.1,<1.0.0"
-"nr.pylang.utils" = ">=0.0.1,<1.0.0"
-six = ">=1.11.0,<2.0.0"
-
-[[package]]
-category = "main"
-description = "Sumtypes in Python."
-name = "nr.sumtype"
-optional = false
-python-versions = "*"
-version = "0.0.3"
-
-[package.dependencies]
-"nr.metaclass" = ">=0.0.4,<1.0.0"
-"nr.stream" = ">=0.0.2,<1.0.0"
-
-[[package]]
-category = "main"
-description = "This module provides some utility functions for applying regular expressions."
-name = "nr.utils.re"
-optional = false
-python-versions = "*"
-version = "0.1.0"
-
-[package.extras]
-test = ["pytest"]
 
 [[package]]
 category = "dev"
@@ -698,7 +395,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 version = "0.8.0"
 
 [[package]]
-category = "main"
+category = "dev"
 description = "File system general utilities"
 name = "pathtools"
 optional = false
@@ -783,29 +480,6 @@ typing_extensions = ["typing-extensions (>=3.7.2)"]
 
 [[package]]
 category = "main"
-description = "Create Python API documentation in Markdown format."
-name = "pydoc-markdown"
-optional = false
-python-versions = ">=3.5.0,<4.0.0"
-version = "3.5.0"
-
-[package.dependencies]
-PyYAML = ">=5.3.0,<6.0.0"
-click = ">=7.0.0,<8.0.0"
-docspec = ">=0.2.0,<0.3.0"
-docspec-python = ">=0.0.7,<0.1.0"
-"nr.collections" = ">=0.0.1,<0.1.0"
-"nr.databind.core" = ">=0.0.18,<0.1.0"
-"nr.databind.json" = ">=0.0.9,<0.1.0"
-"nr.fs" = ">=1.6.0,<2.0.0"
-"nr.interface" = ">=0.0.3,<0.1.0"
-requests = ">=2.23.0,<3.0.0"
-six = ">=1.11.0,<2.0.0"
-toml = ">=0.10.1,<1.0.0"
-watchdog = ">=0.10.2,<1.0.0"
-
-[[package]]
-category = "main"
 description = "A port of node.js's EventEmitter to python."
 name = "pyee"
 optional = false
@@ -819,25 +493,6 @@ name = "pyflakes"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 version = "2.2.0"
-
-[[package]]
-category = "dev"
-description = "Pygments is a syntax highlighting package written in Python."
-name = "pygments"
-optional = false
-python-versions = ">=3.5"
-version = "2.7.1"
-
-[[package]]
-category = "dev"
-description = "Extension pack for Python Markdown."
-name = "pymdown-extensions"
-optional = false
-python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*"
-version = "8.0"
-
-[package.dependencies]
-Markdown = ">=3.2"
 
 [[package]]
 category = "dev"
@@ -999,7 +654,7 @@ python-versions = "*"
 version = "227"
 
 [[package]]
-category = "main"
+category = "dev"
 description = "YAML parser and emitter for Python"
 name = "pyyaml"
 optional = false
@@ -1074,7 +729,7 @@ python-versions = "*"
 version = "1.1.0"
 
 [[package]]
-category = "main"
+category = "dev"
 description = "Python Library for Tom's Obvious, Minimal Language"
 name = "toml"
 optional = false
@@ -1088,14 +743,6 @@ name = "tomlkit"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 version = "0.7.0"
-
-[[package]]
-category = "dev"
-description = "Tornado is a Python web framework and asynchronous networking library, originally developed at FriendFeed."
-name = "tornado"
-optional = false
-python-versions = ">= 3.5"
-version = "6.0.4"
 
 [[package]]
 category = "main"
@@ -1171,7 +818,7 @@ version = "1.22.0"
 six = ">=1.4.1"
 
 [[package]]
-category = "main"
+category = "dev"
 description = "Filesystem events monitoring"
 name = "watchdog"
 optional = false
@@ -1229,7 +876,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "62dbd55e5a264f3ed6140fb12c741fc17bc9a64eac2f02d67380a7ea7fb4030f"
+content-hash = "692298641c81fabe3d3e37af80cbaed84a063d4acca0adceda2e30e4a2f63a8a"
 lock-version = "1.0"
 python-versions = "^3.7"
 
@@ -1337,14 +984,6 @@ docker = [
 docopt = [
     {file = "docopt-0.6.2.tar.gz", hash = "sha256:49b3a825280bd66b3aa83585ef59c4a8c82f2c8a522dbe754a8bc8d08c85c491"},
 ]
-docspec = [
-    {file = "docspec-0.2.0-py3-none-any.whl", hash = "sha256:a5bf4bfe5e940de080b282045db4f2a6aea3e745f639d34262f59791fb18107c"},
-    {file = "docspec-0.2.0.tar.gz", hash = "sha256:058894861bff860f7053188c94cbd55d1777d5d0f39f3f8487960965ab098191"},
-]
-docspec-python = [
-    {file = "docspec-python-0.0.7.tar.gz", hash = "sha256:13af366a2dc0efdc7488f7560ad169ee80992f7f792a6b8d7ad0097bba7a27ab"},
-    {file = "docspec_python-0.0.7-py3-none-any.whl", hash = "sha256:9949eda3f964aacdf39d5c84e24a72464e7e190d982cbb2714e661124fa03524"},
-]
 fake-useragent = [
     {file = "fake-useragent-0.1.11.tar.gz", hash = "sha256:c104998b750eb097eefc28ae28e92d66397598d2cf41a31aa45d5559ef1adf35"},
 ]
@@ -1355,9 +994,6 @@ filelock = [
 flake8 = [
     {file = "flake8-3.8.3-py2.py3-none-any.whl", hash = "sha256:15e351d19611c887e482fb960eae4d44845013cc142d42896e9862f775d8cf5c"},
     {file = "flake8-3.8.3.tar.gz", hash = "sha256:f04b9fcbac03b0a3e58c0ab3a0ecc462e023a9faf046d57794184028123aa208"},
-]
-future = [
-    {file = "future-0.18.2.tar.gz", hash = "sha256:b1bead90b70cf6ec3f0710ae53a525360fa360d306a86583adc6bf83a4db537d"},
 ]
 idna = [
     {file = "idna-2.10-py2.py3-none-any.whl", hash = "sha256:b97d804b1e9b523befed77c48dacec60e6dcb0b5391d57af6a65a312a90648c0"},
@@ -1375,20 +1011,9 @@ jinja2 = [
     {file = "Jinja2-2.11.2-py2.py3-none-any.whl", hash = "sha256:f0a4641d3cf955324a89c04f3d94663aa4d638abe8f733ecd3582848e1c37035"},
     {file = "Jinja2-2.11.2.tar.gz", hash = "sha256:89aab215427ef59c34ad58735269eb58b1a5808103067f7bb9d5836c651b3bb0"},
 ]
-joblib = [
-    {file = "joblib-0.16.0-py3-none-any.whl", hash = "sha256:d348c5d4ae31496b2aa060d6d9b787864dd204f9480baaa52d18850cb43e9f49"},
-    {file = "joblib-0.16.0.tar.gz", hash = "sha256:8f52bf24c64b608bf0b2563e0e47d6fcf516abc8cfafe10cfd98ad66d94f92d6"},
-]
-livereload = [
-    {file = "livereload-2.6.3.tar.gz", hash = "sha256:776f2f865e59fde56490a56bcc6773b6917366bce0c267c60ee8aaf1a0959869"},
-]
 loguru = [
     {file = "loguru-0.5.3-py3-none-any.whl", hash = "sha256:f8087ac396b5ee5f67c963b495d615ebbceac2796379599820e324419d53667c"},
     {file = "loguru-0.5.3.tar.gz", hash = "sha256:b28e72ac7a98be3d28ad28570299a393dfcd32e5e3f6a353dec94675767b6319"},
-]
-lunr = [
-    {file = "lunr-0.5.8-py2.py3-none-any.whl", hash = "sha256:aab3f489c4d4fab4c1294a257a30fec397db56f0a50273218ccc3efdbf01d6ca"},
-    {file = "lunr-0.5.8.tar.gz", hash = "sha256:c4fb063b98eff775dd638b3df380008ae85e6cb1d1a24d1cd81a10ef6391c26e"},
 ]
 lxml = [
     {file = "lxml-4.5.2-cp27-cp27m-macosx_10_9_x86_64.whl", hash = "sha256:74f48ec98430e06c1fa8949b49ebdd8d27ceb9df8d3d1c92e1fdc2773f003f20"},
@@ -1422,10 +1047,6 @@ lxml = [
     {file = "lxml-4.5.2-cp38-cp38-win32.whl", hash = "sha256:107781b213cf7201ec3806555657ccda67b1fccc4261fb889ef7fc56976db81f"},
     {file = "lxml-4.5.2-cp38-cp38-win_amd64.whl", hash = "sha256:f161af26f596131b63b236372e4ce40f3167c1b5b5d459b29d2514bd8c9dc9ee"},
     {file = "lxml-4.5.2.tar.gz", hash = "sha256:cdc13a1682b2a6241080745b1953719e7fe0850b40a5c71ca574f090a1391df6"},
-]
-markdown = [
-    {file = "Markdown-3.2.2-py3-none-any.whl", hash = "sha256:c467cd6233885534bf0fe96e62e3cf46cfc1605112356c4f9981512b8174de59"},
-    {file = "Markdown-3.2.2.tar.gz", hash = "sha256:1fafe3f1ecabfb514a5285fca634a53c1b32a81cb0feb154264d55bf2ff22c17"},
 ]
 markupsafe = [
     {file = "MarkupSafe-1.1.1-cp27-cp27m-macosx_10_6_intel.whl", hash = "sha256:09027a7803a62ca78792ad89403b1b7a73a01c8cb65909cd876f7fcebd79b161"},
@@ -1466,18 +1087,6 @@ mccabe = [
     {file = "mccabe-0.6.1-py2.py3-none-any.whl", hash = "sha256:ab8a6258860da4b6677da4bd2fe5dc2c659cff31b3ee4f7f5d64e79735b80d42"},
     {file = "mccabe-0.6.1.tar.gz", hash = "sha256:dd8d182285a0fe56bace7f45b5e7d1a6ebcbf524e8f3bd87eb0f125271b8831f"},
 ]
-mkdocs = [
-    {file = "mkdocs-1.1.2-py3-none-any.whl", hash = "sha256:096f52ff52c02c7e90332d2e53da862fde5c062086e1b5356a6e392d5d60f5e9"},
-    {file = "mkdocs-1.1.2.tar.gz", hash = "sha256:f0b61e5402b99d7789efa032c7a74c90a20220a9c81749da06dbfbcbd52ffb39"},
-]
-mkdocs-material = [
-    {file = "mkdocs-material-5.5.13.tar.gz", hash = "sha256:1fc3861479438a937e2c21cfdf241d05bdde9048b240d57d00046536a7c3ee64"},
-    {file = "mkdocs_material-5.5.13-py2.py3-none-any.whl", hash = "sha256:48bdee57215e3b3b967cd1561c5836172f9c5917189504b02ded48cf5423973b"},
-]
-mkdocs-material-extensions = [
-    {file = "mkdocs-material-extensions-1.0.tar.gz", hash = "sha256:17d7491e189af75700310b7ec33c6c48a22060b8b445001deca040cb60471cde"},
-    {file = "mkdocs_material_extensions-1.0-py3-none-any.whl", hash = "sha256:09569c3694b5acc1e8334c9730e52b4bcde65fc9d613cc20e49af131ef1a9ca0"},
-]
 more-itertools = [
     {file = "more-itertools-8.5.0.tar.gz", hash = "sha256:6f83822ae94818eae2612063a5101a7311e68ae8002005b5e05f03fd74a86a20"},
     {file = "more_itertools-8.5.0-py3-none-any.whl", hash = "sha256:9b30f12df9393f0d28af9210ff8efe48d10c94f73e5daf886f10c4b0b0b4f03c"},
@@ -1486,52 +1095,9 @@ mypy-extensions = [
     {file = "mypy_extensions-0.4.3-py2.py3-none-any.whl", hash = "sha256:090fedd75945a69ae91ce1303b5824f428daf5a028d2f6ab8a299250a846f15d"},
     {file = "mypy_extensions-0.4.3.tar.gz", hash = "sha256:2d82818f5bb3e369420cb3c4060a7970edba416647068eb4c5343488a6c604a8"},
 ]
-nltk = [
-    {file = "nltk-3.5.zip", hash = "sha256:845365449cd8c5f9731f7cb9f8bd6fd0767553b9d53af9eb1b3abf7700936b35"},
-]
 nox = [
     {file = "nox-2020.8.22-py3-none-any.whl", hash = "sha256:55f8cab16bcfaaea08b141c83bf2b7c779e943518d0de6cd9c38cd8da95d11ea"},
     {file = "nox-2020.8.22.tar.gz", hash = "sha256:efa5adcf1134012f96bcd0a496ccebd4c9e9da53a831888a2a779462440eebcf"},
-]
-"nr.collections" = [
-    {file = "nr.collections-0.0.1.tar.gz", hash = "sha256:ddf38cd6379cac546ce7abdadf024fc01cca75540e11b1d5f1aa701a33817f1c"},
-]
-"nr.databind.core" = [
-    {file = "nr.databind.core-0.0.21-py2.py3-none-any.whl", hash = "sha256:fcee082fbf24be6db90e4c5a852a8c4d305f3ab226e09d9938dbee777d8e803c"},
-    {file = "nr.databind.core-0.0.21.tar.gz", hash = "sha256:5f61f63294dea0fca8b71be6aec6df4b960bac25a7a74fbec666fadfd2b79968"},
-]
-"nr.databind.json" = [
-    {file = "nr.databind.json-0.0.13-py2.py3-none-any.whl", hash = "sha256:82af968a0eeb2c2ba2bc6f840c34b64eb4278035b9e3dfb9904e4e4ba519821d"},
-    {file = "nr.databind.json-0.0.13.tar.gz", hash = "sha256:264c489a1c99228b47f290cd9523e44b348c63ef78515e2b9ca90b3deff5658b"},
-]
-"nr.fs" = [
-    {file = "nr.fs-1.6.2.tar.gz", hash = "sha256:9a9ae664d5ac1bd2b740d458a39378dd312d8054cfb8ec5c3aed09ea036fbaa8"},
-]
-"nr.interface" = [
-    {file = "nr.interface-0.0.3-py2.py3-none-any.whl", hash = "sha256:c2b806b82cfc23e871e3364e262da015c6bd99755a649d0da01ce31f9836b4a9"},
-    {file = "nr.interface-0.0.3.tar.gz", hash = "sha256:58a99b5ec4d29edd32569a674c1a5cf929ebc34faec1bbb47edfc021821763e3"},
-]
-"nr.metaclass" = [
-    {file = "nr.metaclass-0.0.5.tar.gz", hash = "sha256:2a172e552fd1e799cdb0ecb8fd26eac8f6c22164d8dd4386f9315bfcefeb988b"},
-]
-"nr.parsing.date" = [
-    {file = "nr.parsing.date-0.4.2-py2.py3-none-any.whl", hash = "sha256:1c9615ed8c29fa890a930724159a0dbc13e6c1a08e4dafffa3a14401ebad35eb"},
-    {file = "nr.parsing.date-0.4.2.tar.gz", hash = "sha256:47a3a5bf6ab0eee52067312f2b50d6b966000d3c4d4e730e696a0a982319c615"},
-]
-"nr.pylang.utils" = [
-    {file = "nr.pylang.utils-0.0.3-py3-none-any.whl", hash = "sha256:5346086992162981349ca73911d90bc17540f66e71584bdab25f926f3fb843a8"},
-    {file = "nr.pylang.utils-0.0.3.tar.gz", hash = "sha256:b20b731b28dab81c8d498d7955a45afa3aa02e18c7b7398408985d53b5bb2a28"},
-]
-"nr.stream" = [
-    {file = "nr.stream-0.0.4-py2.py3-none-any.whl", hash = "sha256:3692a373e28890884657d21b4527318d98c47ba77de5bd248a7c227ef16e5045"},
-    {file = "nr.stream-0.0.4.tar.gz", hash = "sha256:6a90c6bcb3a96ee1d11c0ababfe2fbacb0b5587a5b6c54dffb8c2c29ab5d7582"},
-]
-"nr.sumtype" = [
-    {file = "nr.sumtype-0.0.3.tar.gz", hash = "sha256:9c9e943e4ca10d158bd34a6a86d27799c01464651161f9e905de2f93f588eb64"},
-]
-"nr.utils.re" = [
-    {file = "nr.utils.re-0.1.0-py2.py3-none-any.whl", hash = "sha256:f9345351462e973a0991f17470f73e911cb226fd659d01d5178b166767a495fd"},
-    {file = "nr.utils.re-0.1.0.tar.gz", hash = "sha256:7aad941dd92609a227c774ae21518fc804d613e1e6a787225a56b70075753388"},
 ]
 packaging = [
     {file = "packaging-20.4-py2.py3-none-any.whl", hash = "sha256:998416ba6962ae7fbd6596850b80e17859a5753ba17c32284f67bfff33784181"},
@@ -1605,10 +1171,6 @@ pydantic = [
     {file = "pydantic-1.6.1-py36.py37.py38-none-any.whl", hash = "sha256:b5b3489cb303d0f41ad4a7390cf606a5f2c7a94dcba20c051cd1c653694cb14d"},
     {file = "pydantic-1.6.1.tar.gz", hash = "sha256:54122a8ed6b75fe1dd80797f8251ad2063ea348a03b77218d73ea9fe19bd4e73"},
 ]
-pydoc-markdown = [
-    {file = "pydoc-markdown-3.5.0.tar.gz", hash = "sha256:00b90b27bb43e015471a23c710056768794226ca20a34d35963986c51d3dc879"},
-    {file = "pydoc_markdown-3.5.0-py3-none-any.whl", hash = "sha256:df095ed6a4791f72b88dfd0e57357af10b02b0bdafff4e105cb8c6299828a6ab"},
-]
 pyee = [
     {file = "pyee-7.0.4-py2.py3-none-any.whl", hash = "sha256:0667fd696f55ffdf9f2646fa60557b4eeae1a427315d3938b614ee40755d18b6"},
     {file = "pyee-7.0.4.tar.gz", hash = "sha256:15c6bcc14de2c2b3d8ee8923283fca182bcfab4155975a5165c66fc4bf44b680"},
@@ -1616,14 +1178,6 @@ pyee = [
 pyflakes = [
     {file = "pyflakes-2.2.0-py2.py3-none-any.whl", hash = "sha256:0d94e0e05a19e57a99444b6ddcf9a6eb2e5c68d3ca1e98e90707af8152c90a92"},
     {file = "pyflakes-2.2.0.tar.gz", hash = "sha256:35b2d75ee967ea93b55750aa9edbbf72813e06a66ba54438df2cfac9e3c27fc8"},
-]
-pygments = [
-    {file = "Pygments-2.7.1-py3-none-any.whl", hash = "sha256:307543fe65c0947b126e83dd5a61bd8acbd84abec11f43caebaf5534cbc17998"},
-    {file = "Pygments-2.7.1.tar.gz", hash = "sha256:926c3f319eda178d1bd90851e4317e6d8cdb5e292a3386aac9bd75eca29cf9c7"},
-]
-pymdown-extensions = [
-    {file = "pymdown-extensions-8.0.tar.gz", hash = "sha256:440b0db9823b89f9917482ce3ab3d32ac18e60f2e186770ac37836830d5e7256"},
-    {file = "pymdown_extensions-8.0-py2.py3-none-any.whl", hash = "sha256:c3b18b719adc3a441c4edbcf691157998dbd333384a8e2caf0690985a6e586f0"},
 ]
 pyparsing = [
     {file = "pyparsing-2.4.7-py2.py3-none-any.whl", hash = "sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b"},
@@ -1743,17 +1297,6 @@ toml = [
 tomlkit = [
     {file = "tomlkit-0.7.0-py2.py3-none-any.whl", hash = "sha256:6babbd33b17d5c9691896b0e68159215a9387ebfa938aa3ac42f4a4beeb2b831"},
     {file = "tomlkit-0.7.0.tar.gz", hash = "sha256:ac57f29693fab3e309ea789252fcce3061e19110085aa31af5446ca749325618"},
-]
-tornado = [
-    {file = "tornado-6.0.4-cp35-cp35m-win32.whl", hash = "sha256:5217e601700f24e966ddab689f90b7ea4bd91ff3357c3600fa1045e26d68e55d"},
-    {file = "tornado-6.0.4-cp35-cp35m-win_amd64.whl", hash = "sha256:c98232a3ac391f5faea6821b53db8db461157baa788f5d6222a193e9456e1740"},
-    {file = "tornado-6.0.4-cp36-cp36m-win32.whl", hash = "sha256:5f6a07e62e799be5d2330e68d808c8ac41d4a259b9cea61da4101b83cb5dc673"},
-    {file = "tornado-6.0.4-cp36-cp36m-win_amd64.whl", hash = "sha256:c952975c8ba74f546ae6de2e226ab3cc3cc11ae47baf607459a6728585bb542a"},
-    {file = "tornado-6.0.4-cp37-cp37m-win32.whl", hash = "sha256:2c027eb2a393d964b22b5c154d1a23a5f8727db6fda837118a776b29e2b8ebc6"},
-    {file = "tornado-6.0.4-cp37-cp37m-win_amd64.whl", hash = "sha256:5618f72e947533832cbc3dec54e1dffc1747a5cb17d1fd91577ed14fa0dc081b"},
-    {file = "tornado-6.0.4-cp38-cp38-win32.whl", hash = "sha256:22aed82c2ea340c3771e3babc5ef220272f6fd06b5108a53b4976d0d722bcd52"},
-    {file = "tornado-6.0.4-cp38-cp38-win_amd64.whl", hash = "sha256:c58d56003daf1b616336781b26d184023ea4af13ae143d9dda65e31e534940b9"},
-    {file = "tornado-6.0.4.tar.gz", hash = "sha256:0fe2d45ba43b00a41cd73f8be321a44936dc1aba233dee979f17a042b83eb6dc"},
 ]
 tqdm = [
     {file = "tqdm-4.49.0-py2.py3-none-any.whl", hash = "sha256:8f3c5815e3b5e20bc40463fa6b42a352178859692a68ffaa469706e6d38342a5"},
