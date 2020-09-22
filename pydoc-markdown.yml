@@ -54,9 +54,9 @@ renderer:
         - schema.*
         - tweets.*
 
-  mkdocs_config:
+  # mkdocs_config:
 
-    repo_url: https://github.com/dgnsrekt/nitter_scraper
+    # repo_url: https://github.com/dgnsrekt/nitter_scraper
     # theme:
     #   name: material
     #   palette:
