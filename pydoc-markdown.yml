@@ -2,7 +2,6 @@ loaders:
   - type: python
     search_path: [nitter_scraper]
 
-
 processors:
   - type: filter
   - type: google
@@ -23,12 +22,9 @@ renderer:
     signature_code_block: True
     render_module_header: False
     insert_header_anchors: True
-    # escape_html_in_docstring: False
     code_lang: True
     html_headers: False
     code_headers: True
-
-    # render_toc: True
 
     # source_linker:
     #   type: github
@@ -39,7 +35,7 @@ renderer:
   site_name: nitter_scraper
   clean_render: True
   pages:
-    - title: Home
+    - title: Getting Started
       name: index
       source: README.md
 
@@ -49,12 +45,26 @@ renderer:
 
     - title: API Documentation
       name: api
-      contents:
-        - nitter.*
-        # - paths.*
-        - profile.*
-        - schema.*
-        - tweets.*
+      children:
+        - title: "Schema Module"
+          contents:
+          - schema.*
+
+        - title: "Tweets Module"
+          contents:
+          - tweets.*
+
+        - title: "Nitter Module"
+          contents:
+          - nitter.*
+
+        - title: "Profile Module"
+          contents:
+          - profile.*
+
+        - title: "Paths Module"
+          contents:
+          - paths.*
 
   mkdocs_config:
 

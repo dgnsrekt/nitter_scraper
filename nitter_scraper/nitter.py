@@ -43,6 +43,7 @@ class Nitter(DockerBase):
     Attributes:
         tempfile (TemporaryFile): A TemporaryFile file generated from a template.
         container (Container): Local representation of a container object.
+            Holds the started instance of a docker container.
         address (str): The full address of the docker container.
         ports (dict[int, int]): Binds the listening port to the nitter docker container's
             internal port 8080.
@@ -91,10 +92,11 @@ class Nitter(DockerBase):
         self.tempfile.seek(0)
 
     def get_profile(self, username: str, not_found_ok: bool = False):
-        """A modified version of the get_profile function.
+        """Scrapes nitter for the target users profile information.
 
-        This version automatically uses the address of the docker to container as the primary
-        address to scrape profile data from.
+        This is a modified version of nitter_scraper.profile.get_profile().
+        This version automatically uses the address of the docker container as the primary
+        address to scrape profile data.
 
         Args:
             username: The target profiles username.
@@ -112,6 +114,24 @@ class Nitter(DockerBase):
         return get_profile(username=username, not_found_ok=not_found_ok, address=self.address)
 
     def get_tweets(self, username: str, pages: int = 25, break_on_tweet_id: Optional[int] = None):
+        """Gets the target users tweets
+
+        This is a modified version of nitter_scraper.tweets.get_tweets().
+        This version automatically uses the address of the docker container as the primary
+        address to scrape profile data.
+
+        Args:
+            username: Targeted users username.
+            pages: Max number of pages to lookback starting from the latest tweet.
+            break_on_tweet_id: Gives the ability to break out of a loop if a tweets id is found.
+            address: The address to scrape from. The default is https://nitter.net which should
+                be used as a fallback address.
+
+        Yields:
+            Tweet Objects
+
+        """
+
         return get_tweets(
             username=username,
             pages=pages,

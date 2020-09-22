@@ -1,3 +1,4 @@
+"""Module for scraping tweets"""
 from datetime import datetime
 import re
 from typing import Dict, Optional

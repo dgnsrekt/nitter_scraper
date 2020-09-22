@@ -16,9 +16,14 @@ markdown_extensions:
 - pymdownx.highlight
 - pymdownx.superfences
 nav:
-- Home: index.md
+- Getting Started: index.md
 - Examples: examples.md
-- API Documentation: api.md
+- API Documentation:
+  - Schema Module: api/schema-module.md
+  - Tweets Module: api/tweets-module.md
+  - Nitter Module: api/nitter-module.md
+  - Profile Module: api/profile-module.md
+  - Paths Module: api/paths-module.md
 repo_url: https://github.com/dgnsrekt/nitter_scraper
 site_name: nitter_scraper
 theme:
