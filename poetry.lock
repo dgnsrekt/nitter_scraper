@@ -126,7 +126,7 @@ toml = "*"
 test = ["mock (>=3.0.0)"]
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Composable command line interface toolkit"
 name = "click"
 optional = false
@@ -206,7 +206,7 @@ python-versions = "*"
 version = "0.6.2"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Docspec is a JSON object specification for representing API documentation of programming languages."
 name = "docspec"
 optional = false
@@ -218,7 +218,7 @@ version = "0.2.0"
 "nr.databind.json" = ">=0.0.9,<0.1.0"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "A parser based on lib2to3 producing docspec data from Python source code."
 name = "docspec-python"
 optional = false
@@ -528,7 +528,7 @@ version = "*"
 tox_to_nox = ["jinja2", "tox"]
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Useful container datatypes for Python 2 and 3."
 name = "nr.collections"
 optional = false
@@ -543,7 +543,7 @@ six = ">=1.11.0,<2.0.0"
 test = ["nr.fs (>=1.5.0,<2.0.0)"]
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Bind structured data directly to typed objects."
 name = "nr.databind.core"
 optional = false
@@ -560,7 +560,7 @@ version = "0.0.21"
 test = ["pytest", "pyyaml"]
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Deserialize JSON into Python objects and reverse."
 name = "nr.databind.json"
 optional = false
@@ -578,7 +578,7 @@ version = "0.0.13"
 test = ["pytest", "pyyaml", "flask"]
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Filesystem and path manipulation tools."
 name = "nr.fs"
 optional = false
@@ -589,7 +589,7 @@ version = "1.6.2"
 six = ">=1.11.0,<2.0.0"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Interface definitions for Python."
 name = "nr.interface"
 optional = false
@@ -603,7 +603,7 @@ version = "0.0.3"
 six = ">=1.11.0,<2.0.0"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Metaclass utilities."
 name = "nr.metaclass"
 optional = false
@@ -611,7 +611,7 @@ python-versions = "*"
 version = "0.0.5"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "A simple and fast date parsing library. Uses dateutil for timezone offset support."
 name = "nr.parsing.date"
 optional = false
@@ -623,7 +623,7 @@ version = "0.4.2"
 six = "*"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Package description here."
 name = "nr.pylang.utils"
 optional = false
@@ -634,7 +634,7 @@ version = "0.0.3"
 "nr.collections" = ">=0.0.1,<1.0.0"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Use iterators like Java streams."
 name = "nr.stream"
 optional = false
@@ -647,7 +647,7 @@ version = "0.0.4"
 six = ">=1.11.0,<2.0.0"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Sumtypes in Python."
 name = "nr.sumtype"
 optional = false
@@ -659,7 +659,7 @@ version = "0.0.3"
 "nr.stream" = ">=0.0.2,<1.0.0"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "This module provides some utility functions for applying regular expressions."
 name = "nr.utils.re"
 optional = false
@@ -698,7 +698,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 version = "0.8.0"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "File system general utilities"
 name = "pathtools"
 optional = false
@@ -782,7 +782,7 @@ email = ["email-validator (>=1.0.3)"]
 typing_extensions = ["typing-extensions (>=3.7.2)"]
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Create Python API documentation in Markdown format."
 name = "pydoc-markdown"
 optional = false
@@ -999,7 +999,7 @@ python-versions = "*"
 version = "227"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "YAML parser and emitter for Python"
 name = "pyyaml"
 optional = false
@@ -1074,7 +1074,7 @@ python-versions = "*"
 version = "1.1.0"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Python Library for Tom's Obvious, Minimal Language"
 name = "toml"
 optional = false
@@ -1171,7 +1171,7 @@ version = "1.22.0"
 six = ">=1.4.1"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Filesystem events monitoring"
 name = "watchdog"
 optional = false
@@ -1229,7 +1229,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "f829579f83d8009cdc47cd31095fa756591abaa89ccf57c78b21ca85634dfbd3"
+content-hash = "62dbd55e5a264f3ed6140fb12c741fc17bc9a64eac2f02d67380a7ea7fb4030f"
 lock-version = "1.0"
 python-versions = "^3.7"
 
