@@ -1,5 +1,6 @@
-from nitter_scraper import NitterScraper
 import time
+
+from nitter_scraper import NitterScraper
 
 last_tweet_id = None
 
@@ -7,10 +8,10 @@ with NitterScraper(port=8008) as nitter:
     while True:
         for tweet in nitter.get_tweets("dgnsrekt", pages=1, break_on_tweet_id=last_tweet_id):
 
-            if tweet.is_pinned == True:
+            if tweet.is_pinned is True:
                 continue
 
-            if tweet.is_retweet == True:
+            if tweet.is_retweet is True:
                 continue
 
             if tweet.tweet_id != last_tweet_id:

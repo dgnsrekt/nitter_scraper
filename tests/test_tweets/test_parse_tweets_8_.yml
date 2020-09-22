@@ -1,8 +1,21 @@
-'{"tweet_id": 1287399738548068352, "tweet_url": "/DGNSREKT/status/1287399738548068352#m",
-  "username": "DGNSREKT", "is_retweet": false, "is_pinned": false, "time": "2020-07-26T14:49:51",
-  "text": "tradingview.com/chart/XBTUSD\u2026 $BTC $XBT For information on the strategy.
-  dgnsrekt.github.io/tradingvi\u2026 Documentation still in progress. [Filter > Entry
-  > Exit > Timing > Survival]", "replies": 1, "retweets": 0, "likes": 0, "entries":
-  {"hashtags": [], "cashtags": ["$BTC", "$XBT"], "urls": ["https://dgnsrekt.github.io/tradingview_overlay/",
-  "https://www.tradingview.com/chart/XBTUSD/wN7i8vYx-LONG-SIGNAL/"], "photos": [],
-  "videos": []}}'
+entries:
+  cashtags:
+  - $BTC
+  - $XBT
+  hashtags: []
+  photos: []
+  urls:
+  - https://dgnsrekt.github.io/tradingview_overlay/
+  - https://www.tradingview.com/chart/XBTUSD/wN7i8vYx-LONG-SIGNAL/
+  videos: []
+is_pinned: false
+is_retweet: false
+likes: 0
+replies: 1
+retweets: 0
+text: tradingview.com/chart/XBTUSD… $BTC $XBT For information on the strategy. dgnsrekt.github.io/tradingvi…
+  Documentation still in progress. [Filter > Entry > Exit > Timing > Survival]
+time: 2020-07-26 14:49:51
+tweet_id: '1287399738548068352'
+tweet_url: /DGNSREKT/status/1287399738548068352#m
+username: DGNSREKT

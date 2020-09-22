@@ -1,0 +1,36 @@
+docs_dir: content
+extra:
+  social:
+  - icon: fontawesome/brands/twitter
+    link: https://twitter.com/dgnsrekt
+    name: dgnsrekt on twitter
+  - icon: fontawesome/brands/github
+    link: https://github.com/dgnsrekt
+    name: dgnsrekt on twitter
+  - icon: fontawesome/brands/telegram
+    link: https://t.me/dgnsrekt
+    name: dgnsrekt on twitter
+  - icon: fontawesome/solid/paper-plane
+    link: mailto:dgnsrekt@pm.me
+markdown_extensions:
+- pymdownx.highlight
+- pymdownx.superfences
+nav:
+- Getting Started: index.md
+- Examples: examples.md
+- API Documentation:
+  - Schema Module: api/schema-module.md
+  - Tweets Module: api/tweets-module.md
+  - Nitter Module: api/nitter-module.md
+  - Profile Module: api/profile-module.md
+  - Paths Module: api/paths-module.md
+repo_url: https://github.com/dgnsrekt/nitter_scraper
+site_name: nitter_scraper
+theme:
+  icon:
+    repo: fontawesome/brands/github-alt
+  name: material
+  palette:
+    accent: indigo
+    primary: black
+    scheme: slate

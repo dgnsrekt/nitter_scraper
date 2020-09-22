@@ -1,6 +1,17 @@
-'{"tweet_id": 1291108608910991366, "tweet_url": "/The_Real_Fly/status/1291108608910991366#m",
-  "username": "The_Real_Fly", "is_retweet": true, "is_pinned": false, "time": "2020-08-05T20:27:34",
-  "text": "WEDDING VIDEO INTERRUPTED BY BEIRUT EXPLOSION", "replies": 17, "retweets":
-  42, "likes": 165, "entries": {"hashtags": [], "cashtags": [], "urls": [], "photos":
-  ["/pic/ext_tw_video_thumb%2F1291107939571441668%2Fpu%2Fimg%2Fv5St8KL04y2fCxeW.jpg%3Asmall"],
-  "videos": []}}'
+entries:
+  cashtags: []
+  hashtags: []
+  photos:
+  - /pic/ext_tw_video_thumb%2F1291107939571441668%2Fpu%2Fimg%2Fv5St8KL04y2fCxeW.jpg%3Asmall
+  urls: []
+  videos: []
+is_pinned: false
+is_retweet: true
+likes: 165
+replies: 17
+retweets: 42
+text: WEDDING VIDEO INTERRUPTED BY BEIRUT EXPLOSION
+time: 2020-08-05 20:27:34
+tweet_id: '1291108608910991366'
+tweet_url: /The_Real_Fly/status/1291108608910991366#m
+username: The_Real_Fly

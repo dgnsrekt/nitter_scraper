@@ -1,5 +1,18 @@
-'{"tweet_id": 1287102460373458947, "tweet_url": "/cyb3rops/status/1287102460373458947#m",
-  "username": "cyb3rops", "is_retweet": true, "is_pinned": false, "time": "2020-07-25T19:08:34",
-  "text": "Let\u2019s feel old together my friends #OffTopic", "replies": 123, "retweets":
-  1448, "likes": 6376, "entries": {"hashtags": ["#OffTopic"], "cashtags": [], "urls":
-  [], "photos": ["/pic/media%2FEdy03WvWkAArqRd.jpg%3Fname%3Dsmall"], "videos": []}}'
+entries:
+  cashtags: []
+  hashtags:
+  - '#OffTopic'
+  photos:
+  - /pic/media%2FEdy03WvWkAArqRd.jpg%3Fname%3Dsmall
+  urls: []
+  videos: []
+is_pinned: false
+is_retweet: true
+likes: 6376
+replies: 123
+retweets: 1448
+text: 'Let’s feel old together my friends #OffTopic'
+time: 2020-07-25 19:08:34
+tweet_id: '1287102460373458947'
+tweet_url: /cyb3rops/status/1287102460373458947#m
+username: cyb3rops

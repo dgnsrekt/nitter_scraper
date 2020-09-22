@@ -1,5 +1,17 @@
-'{"tweet_id": 1276986512526249994, "tweet_url": "/imBagsy/status/1276986512526249994#m",
-  "username": "imBagsy", "is_retweet": true, "is_pinned": false, "time": "2020-06-27T21:11:24",
-  "text": "Describe $XRP in one picture.", "replies": 198, "retweets": 6, "likes":
-  106, "entries": {"hashtags": [], "cashtags": ["$XRP"], "urls": [], "photos": [],
-  "videos": []}}'
+entries:
+  cashtags:
+  - $XRP
+  hashtags: []
+  photos: []
+  urls: []
+  videos: []
+is_pinned: false
+is_retweet: true
+likes: 106
+replies: 198
+retweets: 6
+text: Describe $XRP in one picture.
+time: 2020-06-27 21:11:24
+tweet_id: '1276986512526249994'
+tweet_url: /imBagsy/status/1276986512526249994#m
+username: imBagsy
