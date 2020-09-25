@@ -21,7 +21,7 @@ def cover(session):
     session.run("coverage", "erase")
 
 
-@nox.session(python="3.8")
+@nox.session
 def lint(session):
     """Code Linting"""
     session.install(
@@ -45,7 +45,7 @@ def lint(session):
     session.run("flake8", "--import-order-style", "google", "examples")
 
 
-@nox.session()
+@nox.session
 def docs(session):
     session.install("pydoc-markdown", "mkdocs-material")
     session.run("pydoc-markdown", "pydoc-markdown.yml", "--server", "--open")
