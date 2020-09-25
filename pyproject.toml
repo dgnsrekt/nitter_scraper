@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "nitter_scraper"
-version = "0.5.0"
+version = "0.5.1"
 description = "Scrape Twitter API without authentication using Nitter."
 authors = ["dgnsrekt <dgnsrekt@pm.me>"]
 readme = "README.md"
