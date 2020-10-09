@@ -50,11 +50,11 @@ def stats_parser(tweet_stats):
     return stats
 
 
-def attachment_parser(attachements):
+def attachment_parser(attachments):
     photos, videos = [], []
-    if attachements:
-        photos = [i.attrs["src"] for i in attachements.find("img")]
-        videos = [i.attrs["src"] for i in attachements.find("source")]
+    if attachments:
+        photos = [i.attrs["src"] for i in attachments.find("img")]
+        videos = [i.attrs["src"] for i in attachments.find("source")]
     return photos, videos
 
 
