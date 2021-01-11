@@ -94,6 +94,8 @@ def profile_parser(elements: Dict) -> Dict:
 
     elements["is_verified"] = True if elements.get("is_verified") else False
 
+    elements["is_private"] = True if elements.get("is_private") else False
+
     if elements.get("biography"):
         elements["biography"] = elements["biography"].text
 
@@ -147,6 +149,10 @@ def html_parser(html: HTML) -> Dict:
 
     elements["is_verified"] = html.find(
         ".profile-card-fullname .icon-container .verified-icon", first=True
+    )
+
+    elements["is_private"] = html.find(
+        ".profile-card-fullname .icon-container .icon-lock", first=True
     )
 
     elements["profile_photo"] = html.find(".profile-card-avatar", first=True)

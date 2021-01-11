@@ -145,7 +145,7 @@ class Nitter(DockerBase):
         client = self._get_client()
 
         self.container = client.containers.run(
-            image="zedeus/nitter:2c6cabb4abe79166ce9973d8652fb213c1b0c5a2",
+            image="zedeus/nitter:2d788704b1d922162b0e7d910f48f9127bc82d7f",
             auto_remove=True,
             ports=self.ports,
             detach=True,
