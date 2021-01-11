@@ -1,6 +1,6 @@
 md5 6d1f2f1dce4fd7f47e1b5f7a143fa1d7 content/index.md
 md5 8f2b4ebd45d1d026321cd74410e06c6c content/examples.md
-md5 d92c4ca418be2532bc754f69055aef36 content/api/schema-module.md
+md5 c860a8b3eeb6a14ae2c260170eb48e99 content/api/schema-module.md
 md5 2b8dae35b49ab82a7861366f571f0312 content/api/tweets-module.md
 md5 a8770bded1a8f6cf526981d38480ce03 content/api/nitter-module.md
 md5 908e8873dca7c5a9a2927b304f8a86fc content/api/profile-module.md
