@@ -113,7 +113,7 @@ class Nitter(DockerBase):
         """
         return get_profile(username=username, not_found_ok=not_found_ok, address=self.address)
 
-    def get_tweets(self, username: str, pages: int = 25, break_on_tweet_id: Optional[int] = None):
+    def get_tweets(self, query_string: str, query_type: str, pages: int = 25, break_on_tweet_id: Optional[int] = None):
         """Gets the target users tweets
 
         This is a modified version of nitter_scraper.tweets.get_tweets().
@@ -133,7 +133,8 @@ class Nitter(DockerBase):
         """
 
         return get_tweets(
-            username=username,
+            query_string=query_string,
+            query_type=query_type,
             pages=pages,
             break_on_tweet_id=break_on_tweet_id,
             address=self.address,
