@@ -123,13 +123,13 @@ def timeline_parser(html):
     return html.find(".timeline", first=True)
 
 
-def pagination_parser(timeline, address, username) -> str:
+def pagination_parser(timeline, url) -> str:
     next_page = list(timeline.find(".show-more")[-1].links)[0]
-    return f"{address}/{username}{next_page}"
+    return f"{url}{next_page}"
 
 
 def get_tweets(
-    username: str,
+    query_string: str,
     pages: int = 25,
     break_on_tweet_id: Optional[int] = None,
     address="https://nitter.net",
@@ -137,7 +137,7 @@ def get_tweets(
     """Gets the target users tweets
 
     Args:
-        username: Targeted users username.
+        query_string: Hashtag, if starts with #, cashtag if starts with $, username otherwise
         pages: Max number of pages to lookback starting from the latest tweet.
         break_on_tweet_id: Gives the ability to break out of a loop if a tweets id is found.
         address: The address to scrape from. The default is https://nitter.net which should
@@ -147,8 +147,14 @@ def get_tweets(
         Tweet Objects
 
     """
-    url = f"{address}/{username}"
+    if query_string.startswith('#'):
+        url = f"{address}/search?q=%23{query_string[1:]}"
+    elif query_string.startswith('$'):
+        url = f"{address}/search?q={query_string}"
+    else:
+        url = f"{address}/{query_string}"
     session = HTMLSession()
+
 
     def gen_tweets(pages):
         response = session.get(url)
@@ -157,7 +163,7 @@ def get_tweets(
             if response.status_code == 200:
                 timeline = timeline_parser(response.html)
 
-                next_url = pagination_parser(timeline, address, username)
+                next_url = pagination_parser(timeline, url)
 
                 timeline_items = timeline.find(".timeline-item")
 
