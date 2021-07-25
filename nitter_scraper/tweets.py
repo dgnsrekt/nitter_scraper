@@ -130,7 +130,6 @@ def pagination_parser(timeline, url) -> str:
 
 def get_tweets(
     query_string: str,
-    query_type: str = 'user',
     pages: int = 25,
     break_on_tweet_id: Optional[int] = None,
     address="https://nitter.net",
@@ -138,8 +137,7 @@ def get_tweets(
     """Gets the target users tweets
 
     Args:
-        query_string: Targeted username, hashtag or cashtag.
-        query_type: Type of former paremeter. Either one of 'user', 'hashtag' or 'cashtag'.
+        query_string: Hashtag, if starts with #, cashtag if starts with $, username otherwise
         pages: Max number of pages to lookback starting from the latest tweet.
         break_on_tweet_id: Gives the ability to break out of a loop if a tweets id is found.
         address: The address to scrape from. The default is https://nitter.net which should
@@ -149,15 +147,14 @@ def get_tweets(
         Tweet Objects
 
     """
-    if query_type == 'user':
-        url = f"{address}/{query_string}"
-    elif query_type == 'hashtag':
-        url = f"{address}/search?q=%23{query_string}"
-    elif query_type == 'cashtag':
-        url = f"{address}/search?q=${query_string}"
+    if query_string.startswith('#'):
+        url = f"{address}/search?q=%23{query_string[1:]}"
+    elif query_string.startswith('$'):
+        url = f"{address}/search?q={query_string}"
     else:
-        raise ValueError(f"Unknown query_type '{query_type}'")
+        url = f"{address}/{query_string}"
     session = HTMLSession()
+
 
     def gen_tweets(pages):
         response = session.get(url)

@@ -113,7 +113,7 @@ class Nitter(DockerBase):
         """
         return get_profile(username=username, not_found_ok=not_found_ok, address=self.address)
 
-    def get_tweets(self, query_string: str, query_type: str, pages: int = 25, break_on_tweet_id: Optional[int] = None):
+    def get_tweets(self, query_string: str, pages: int = 25, break_on_tweet_id: Optional[int] = None):
         """Gets the target users tweets
 
         This is a modified version of nitter_scraper.tweets.get_tweets().
@@ -121,7 +121,7 @@ class Nitter(DockerBase):
         address to scrape profile data.
 
         Args:
-            username: Targeted users username.
+            query_string: Hashtag, if starts with #, cashtag if starts with $, username otherwise
             pages: Max number of pages to lookback starting from the latest tweet.
             break_on_tweet_id: Gives the ability to break out of a loop if a tweets id is found.
             address: The address to scrape from. The default is https://nitter.net which should
@@ -134,7 +134,6 @@ class Nitter(DockerBase):
 
         return get_tweets(
             query_string=query_string,
-            query_type=query_type,
             pages=pages,
             break_on_tweet_id=break_on_tweet_id,
             address=self.address,
