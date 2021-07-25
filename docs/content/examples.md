@@ -59,6 +59,34 @@ for user in users:
 
 ```
 
+### How to scrape tweets related to hashtag or cashtag.
+```python
+from pprint import pprint
+
+import nitter_scraper
+from nitter_scraper import NitterScraper
+
+queries = ["#ToTheMoon", "$USDT"]
+
+print("Scraping with local nitter docker instance.")
+
+with NitterScraper(host="0.0.0.0", port=8008) as nitter:
+    for query in queries:
+        for tweet in nitter.get_tweets(query, pages=2):
+            print()
+            pprint(tweet.dict())
+            print(tweet.json(indent=4))
+
+print("Scraping from https://www.nitter.net.")
+
+for query in queries:
+    for tweet in nitter.get_tweets(query, pages=2):
+        print()
+        pprint(tweet.dict())
+        print(tweet.json(indent=4))
+
+```
+
 ### How to poll a users profile for the latest tweet.
 ```python
 import time
