@@ -15,6 +15,7 @@ from pydantic import BaseModel as Base
 from nitter_scraper.paths import PROJECT_ROOT, TEMPLATES_DIRECTORY  # noqa: I202, I100
 from nitter_scraper.profile import get_profile  # noqa: I202, I100
 from nitter_scraper.tweets import get_tweets  # noqa: I202, I100
+from nitter_scraper.schema import Tweet
 
 
 class DockerBase(Base):
@@ -113,7 +114,16 @@ class Nitter(DockerBase):
         """
         return get_profile(username=username, not_found_ok=not_found_ok, address=self.address)
 
-    def get_tweets(self, username: str, pages: int = 25, break_on_tweet_id: Optional[int] = None):
+    def get_tweets(
+            self,
+            username: str,
+            pages: int = 25,
+            break_on_tweet_id: Optional[int] = None,
+            address="https://nitter.net",
+            headers: Optional[dict[str, str]] = None,
+            params: Optional[dict[str, str]] = None,
+            proxies: Optional[dict[str, str]] = None,
+            ) -> Tweet:
         """Gets the target users tweets
 
         This is a modified version of nitter_scraper.tweets.get_tweets().
@@ -125,10 +135,14 @@ class Nitter(DockerBase):
             pages: Max number of pages to lookback starting from the latest tweet.
             break_on_tweet_id: Gives the ability to break out of a loop if a tweets id is found.
             address: The address to scrape from. The default is https://nitter.net which should
-                be used as a fallback address.
-
+                be used as a fallback address. Refer to https://github.com/zedeus/nitter/wiki/Instances
+                for a list of instances.
+            headers: HTTP headers to be passed.
+            params: Search query parameters as found in Nitter URLs upon search.
+            proxies: Passed to HTMLSession.get().
+    
         Yields:
-            Tweet Objects
+        Tweet Objects
 
         """
 
@@ -137,6 +151,9 @@ class Nitter(DockerBase):
             pages=pages,
             break_on_tweet_id=break_on_tweet_id,
             address=self.address,
+            headers=headers,
+            params=params,
+            proxies=proxies
         )
 
     def start(self):
@@ -145,7 +162,7 @@ class Nitter(DockerBase):
         client = self._get_client()
 
         self.container = client.containers.run(
-            image="zedeus/nitter:2d788704b1d922162b0e7d910f48f9127bc82d7f",
+            image="zedeus/nitter:2c6cabb4abe79166ce9973d8652fb213c1b0c5a2",
             auto_remove=True,
             ports=self.ports,
             detach=True,
