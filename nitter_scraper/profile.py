@@ -94,8 +94,6 @@ def profile_parser(elements: Dict) -> Dict:
 
     elements["is_verified"] = True if elements.get("is_verified") else False
 
-    elements["is_private"] = True if elements.get("is_private") else False
-
     if elements.get("biography"):
         elements["biography"] = elements["biography"].text
 
@@ -151,10 +149,6 @@ def html_parser(html: HTML) -> Dict:
         ".profile-card-fullname .icon-container .verified-icon", first=True
     )
 
-    elements["is_private"] = html.find(
-        ".profile-card-fullname .icon-container .icon-lock", first=True
-    )
-
     elements["profile_photo"] = html.find(".profile-card-avatar", first=True)
 
     elements["banner_photo"] = html.find(".profile-banner a", first=True)
@@ -177,7 +171,7 @@ def html_parser(html: HTML) -> Dict:
 
 
 def get_profile(
-    username: str, not_found_ok: bool = False, address: str = "https://nitter.net"
+    username: str, not_found_ok: bool = False, address: str = "https://nitter.net", proxies: Optional[dict[str, str]] = None,
 ) -> Optional[Profile]:
     """Scrapes nitter for the target users profile information.
 
@@ -188,6 +182,7 @@ def get_profile(
         address: The address to scrape profile data from. The default scrape location is
             'https://nitter.net' which should be used as a backup. This value will normally be
             replaced by the address of a local docker container instance of nitter.
+        proxies: Passed to HTMLSession.get()
 
     Returns:
         Profile object if successfully scraped, otherwise None.
@@ -199,7 +194,7 @@ def get_profile(
     """
     url = f"{address}/{username}"
     session = HTMLSession()
-    response = session.get(url)
+    response = session.get(url, proxies=proxies)
 
     if response.status_code == 200:  # user exists
         elements = html_parser(response.html)

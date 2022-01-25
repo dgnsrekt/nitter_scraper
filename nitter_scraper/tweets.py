@@ -1,11 +1,13 @@
 """Module for scraping tweets"""
-from datetime import datetime
+#from datetime import datetime
+from dateutil import parser as dateparser
 import re
 from typing import Dict, Optional
 
 from requests_html import HTMLSession
 
 from nitter_scraper.schema import Tweet  # noqa: I100, I202
+from nitter_scraper.schema import Card
 
 
 def link_parser(tweet_link):
@@ -19,22 +21,7 @@ def link_parser(tweet_link):
 
 
 def date_parser(tweet_date):
-    split_datetime = tweet_date.split(",")
-
-    day, month, year = split_datetime[0].strip().split("/")
-    hour, minute, second = split_datetime[1].strip().split(":")
-
-    data = {}
-
-    data["day"] = int(day)
-    data["month"] = int(month)
-    data["year"] = int(year)
-
-    data["hour"] = int(hour)
-    data["minute"] = int(minute)
-    data["second"] = int(second)
-
-    return datetime(**data)
+    return dateparser.parse(tweet_date.replace('·', ''))
 
 
 def clean_stat(stat):
@@ -50,11 +37,11 @@ def stats_parser(tweet_stats):
     return stats
 
 
-def attachment_parser(attachments):
+def attachment_parser(attachements):
     photos, videos = [], []
-    if attachments:
-        photos = [i.attrs["src"] for i in attachments.find("img")]
-        videos = [i.attrs["src"] for i in attachments.find("source")]
+    if attachements:
+        photos = [i.attrs["src"] for i in attachements.find("img")]
+        videos = [i.attrs["src"] for i in attachements.find("source")]
     return photos, videos
 
 
@@ -93,17 +80,34 @@ def parse_tweet(html) -> Dict:
     data["text"] = content.text
 
     # tweet_header = html.find(".tweet-header") #NOTE: Maybe useful later on
-
+    
+    card = html.find("div.card.large", first=True)
+    
+    if card:
+        data["card"] = {}
+        card_title = card.find(".card-title", first=True)
+        if card_title:
+            data["card"]["title"] = card_title.text
+        card_description = card.find(".card-description", first=True)
+        if card_description:
+            data["card"]["description"] = card_description.text
+        
+        card_image = card.find(".card-image img", first=True)
+        if card_image:
+            data["card"]["image"] = card_image.attrs["src"]
+            
+        data["card"] = Card.from_dict(data["card"])
+    else:
+        data["card"] = None
+        
+    
     stats = stats_parser(html.find(".tweet-stats", first=True))
 
-    if stats.get("comment"):
-        data["replies"] = clean_stat(stats.get("comment"))
+    data["replies"] = clean_stat(stats.get("comment")) if stats.get("comment") else 0
 
-    if stats.get("retweet"):
-        data["retweets"] = clean_stat(stats.get("retweet"))
+    data["retweets"] = clean_stat(stats.get("retweet"))if stats.get("retweet") else 0
 
-    if stats.get("heart"):
-        data["likes"] = clean_stat(stats.get("heart"))
+    data["likes"] = clean_stat(stats.get("heart")) if stats.get("heart") else 0
 
     entries = {}
     entries["hashtags"] = hashtag_parser(content.text)
@@ -125,14 +129,16 @@ def timeline_parser(html):
 
 def pagination_parser(timeline, address, username) -> str:
     next_page = list(timeline.find(".show-more")[-1].links)[0]
-    return f"{address}/{username}{next_page}"
-
+    return f"{address}/{username}/search{next_page}"
 
 def get_tweets(
     username: str,
     pages: int = 25,
     break_on_tweet_id: Optional[int] = None,
     address="https://nitter.net",
+    headers: Optional[dict[str, str]] = None,
+    params: Optional[dict[str, str]] = None,
+    proxies: Optional[dict[str, str]] = None,
 ) -> Tweet:
     """Gets the target users tweets
 
@@ -141,17 +147,24 @@ def get_tweets(
         pages: Max number of pages to lookback starting from the latest tweet.
         break_on_tweet_id: Gives the ability to break out of a loop if a tweets id is found.
         address: The address to scrape from. The default is https://nitter.net which should
-            be used as a fallback address.
+            be used as a fallback address. Refer to https://github.com/zedeus/nitter/wiki/Instances
+            for a list of instances.
+        headers: HTTP headers to be passed.
+        params: Search query parameters as found in Nitter URLs upon search.
+        proxies: Passed to HTMLSession.get().
 
     Yields:
         Tweet Objects
 
     """
-    url = f"{address}/{username}"
+    url = f"{address}/{username}/search"
     session = HTMLSession()
+    
+    if headers:
+        session.headers.update(headers)
 
     def gen_tweets(pages):
-        response = session.get(url)
+        response = session.get(url, params=params, proxies=proxies)
 
         while pages > 0:
             if response.status_code == 200:
@@ -174,7 +187,12 @@ def get_tweets(
 
                     yield tweet
 
-            response = session.get(next_url)
+                response = session.get(next_url, params=params, proxies=proxies)
+            else:
+                #print(f'Response status code: {response.status_code}')
+                #last_error_html = response.html
+                pages = 0
+                break
             pages -= 1
 
     yield from gen_tweets(pages)
